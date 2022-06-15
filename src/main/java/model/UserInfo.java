@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public abstract class UserInfo {
+public abstract class UserInfo implements IIdentifiable<UUID> {
 	private UUID id;
 	private String username;
 	private String firstName;
@@ -11,10 +11,10 @@ public abstract class UserInfo {
 	private LocalDate dateOfBirth;
 	private UserRole userRole;
 	private Gender gender;
-	private boolean status;
+	private boolean deleted;
 	
 	public UserInfo(UUID id, String username, String firstName, String lastName, LocalDate dateOfBirth,
-			UserRole userRole, Gender gender, boolean status) {
+			UserRole userRole, Gender gender, boolean deleted) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -23,17 +23,18 @@ public abstract class UserInfo {
 		this.dateOfBirth = dateOfBirth;
 		this.userRole = userRole;
 		this.gender = gender;
-		this.status = status;
+		this.deleted = deleted;
 	}
 
 	public UserInfo() {
 		
 	}
 	
-	
+	@Override
 	public UUID getId() {
 		return id;
 	}
+	@Override
 	public void setId(UUID id) {
 		this.id = id;
 	}
@@ -78,13 +79,18 @@ public abstract class UserInfo {
 		this.gender = gender;
 	}
 
-	public boolean isStatus() {
-		return status;
+	@Override
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+		
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	@Override
+	public boolean isDeleted() {
+		return deleted;
 	}
+
+
 	
 	
 
