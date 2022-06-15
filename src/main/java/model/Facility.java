@@ -2,7 +2,7 @@ package model;
 
 import java.util.UUID;
 
-public class Facility {
+public class Facility implements IIdentifiable<UUID> {
 	private UUID id;
 	private String name;
 	//private ? content; TODO Create new class?
@@ -10,6 +10,7 @@ public class Facility {
 	private boolean status;
 	private Location location;
 	private double avrageScore;
+	private boolean deleted;
 	
 	private UUID managerId;
 
@@ -29,10 +30,12 @@ public class Facility {
 		super();
 	}
 
+	@Override
 	public UUID getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(UUID id) {
 		this.id = id;
 	}
@@ -83,6 +86,16 @@ public class Facility {
 
 	public void setManagerId(UUID managerId) {
 		this.managerId = managerId;
+	}
+
+	@Override
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;		
+	}
+
+	@Override
+	public boolean isDeleted() {
+		return deleted;
 	}
 	
 	
