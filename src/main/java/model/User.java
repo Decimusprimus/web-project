@@ -5,15 +5,17 @@ import java.util.UUID;
 public class User implements IIdentifiable<UUID> {
 	private UUID id;
 	private String username;
+	private String password;
 	private UserRole userRole;
 	private boolean deleted;
-	
-	public User(UUID id, String username, UserRole userRole) {
+
+	public User(UUID id, String username, String password, UserRole userRole, boolean deleted) {
 		super();
 		this.id = id;
 		this.username = username;
+		this.password = password;
 		this.userRole = userRole;
-		this.deleted = false;
+		this.deleted = deleted;
 	}
 
 	public User() {
@@ -44,6 +46,14 @@ public class User implements IIdentifiable<UUID> {
 
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

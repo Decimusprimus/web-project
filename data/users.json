@@ -2,7 +2,15 @@
 {
 	"id" : "d0c6a75c-153d-452f-8ac1-3cfe53e04a63",
 	"username" : "marko",
+	"password" : "ADMIN",
 	"userRole" : "ADMIN",
+	"deleted" : false
+},
+{
+	"id" : "d0c6a75c-153d-452f-8ac1-3cfe53e04a64",
+	"username" : "djuro",
+	"password" : "1234",
+	"userRole" : "CUSTOMER",
 	"deleted" : false
 }
 ]
