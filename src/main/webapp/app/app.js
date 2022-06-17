@@ -1,13 +1,43 @@
-const Home = { template: '<home-component></home-component>'}
+const Home = { template: '<home-component></home-component>' }
+const Login = { template: '<login v-on:logged-in="checkLogin()"></login>' }
 
 const router = new VueRouter({
 	mode: 'hash',
 	routes: [
-		{ path: '/', component: Home }
+		{ path: '/', component: Home },
+		{ path: '/login', component: Login }
 	]
 })
 
 var app = new Vue({
 	router,
-	el: '#app'
+	el: '#app',
+	data: {
+		isLoggedIn : false,
+		user : String,
+	},
+
+	mounted() {
+		this.checkLogin();
+	},
+	methods: {
+		checkLogin: function() {
+			if(!window.localStorage.getItem('user'))
+			{
+				this.isLoggedIn = false;
+			} else {
+				this.isLoggedIn = true;
+				this.user = window.localStorage.getItem('user');
+			}
+		},
+
+		logout: function() {
+			axios.post('/user/logout')
+			.then(res => {
+				window.localStorage.removeItem('user');
+				this.isLoggedIn = false;
+				this.$router.go(0);
+			})
+		}
+	}
 })

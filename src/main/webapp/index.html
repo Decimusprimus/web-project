@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"/>
+		<link href="css/app.css" rel="stylesheet"/>
 		
 	</head>
 	
+	
 	<div id="app">
+		<nav class="navbar navbar-dark bg-dark">
+			<a class="nav-link" href="#/">Home</a>
+			<span></span>
+			<a v-if="!isLoggedIn" class="nav-link" href="#/login" >Login</a>
+			<a v-if="isLoggedIn" class="nav-link" href="#" v-on:click="logout()">Logout</a>
+		</nav>
 		<router-view></router-view>
 	</div>
 		
@@ -18,8 +26,9 @@
 		<script src="js/vue-router.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-		
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="app/home.js"></script>
+		<script src="app/login.js"></script>
 		<script src="app/app.js"></script>
 	</body>
 </html>
