@@ -14,5 +14,7 @@ public class CustomerRepository extends Repository<Customer, UUID> {
 		super(path, new TypeToken<List<Customer>>() {}.getType(), new Gson());
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 }

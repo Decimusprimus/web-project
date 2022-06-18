@@ -1,11 +1,13 @@
 const Home = { template: '<home-component></home-component>' }
-const Login = { template: '<login v-on:logged-in="checkLogin()"></login>' }
+const Login = { template: '<login></login>' }
+const RegisterCustomer = { template: '<register-customer></register-customer>'}
 
 const router = new VueRouter({
 	mode: 'hash',
 	routes: [
 		{ path: '/', component: Home },
-		{ path: '/login', component: Login }
+		{ path: '/login', component: Login },
+		{ path: '/register', component: RegisterCustomer }
 	]
 })
 

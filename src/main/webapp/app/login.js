@@ -21,6 +21,7 @@ Vue.component("login", {
                 <input type="password" class="form-control" id="passwordLogin" v-model="password">
             </div>
             <button type="submit" class="btn btn-dark" v-on:click="login" style="width: 100%; margin-top: 20px">Login</button>
+            <a href="#/register">Create an account.</a>
         </form>
     </div>
     `,

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import model.User;
+import model.UserRole;
 
 public class UserRepository extends Repository<User, UUID> {
 
@@ -25,5 +26,20 @@ public class UserRepository extends Repository<User, UUID> {
 		}
 		return null;
 	}
+	
+	public User createNewCustomer(String username, String password) {
+		ArrayList<User> collection = (ArrayList<User>) getAll();
+		for(User u : collection) {
+			if(u.getUsername().equals(username)) {
+				return null;
+			}
+		}
+		User newUser = new User(username, password, UserRole.CUSTOMER);
+		collection.add(newUser);
+		saveAll(collection);
+		return newUser;
+	}
+	
+	
 
 }

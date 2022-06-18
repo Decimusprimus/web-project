@@ -17,6 +17,15 @@ public class User implements IIdentifiable<UUID> {
 		this.userRole = userRole;
 		this.deleted = deleted;
 	}
+	
+	public User(String username, String password, UserRole userRole) {
+		super();
+		this.id = UUID.randomUUID();
+		this.username = username;
+		this.password = password;
+		this.userRole = userRole;
+		this.deleted = false;
+	}
 
 	public User() {
 		super();

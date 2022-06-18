@@ -18,18 +18,21 @@ import static spark.Spark.staticFiles;
 public class SparkAppMain {
 	
 	public static UserRepository userRepository;
+	public static CustomerRepository customerRepository;
 	public static UserService userService;
 
 	public static void main(String[] args) throws IOException {
 		
 		userRepository = new UserRepository("./data/users.json");
-		userService = new UserService(userRepository);
+		customerRepository = new CustomerRepository("./data/customer.json");
+		userService = new UserService(userRepository, customerRepository);
 		
 		port(8080);
 		staticFiles.externalLocation(new File("src/main/webapp").getCanonicalPath());
 		
 		post("/user/login", UsersController.HandleLogin);
 		post("/user/logout", UsersController.HandleLogout);
+		post("/user/register/customer", UsersController.RegisterCustomer);
 		
 	}
 

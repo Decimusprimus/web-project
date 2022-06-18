@@ -13,6 +13,13 @@ public class Customer extends UserInfo {
 		this.type = type;
 		this.points = points;
 	}
+	
+	public Customer(UUID id, String username, String firstName, String lastName, LocalDate dateOfBirth,
+			UserRole userRole, Gender gender, boolean deleted) {
+		super(id, username, firstName, lastName, dateOfBirth, userRole, gender, deleted);
+		this.type = CustomerTypeName.BRONZE;
+		this.points = 0;
+	}
 
 	public Customer() {
 		super();
