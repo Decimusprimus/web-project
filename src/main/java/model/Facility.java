@@ -1,28 +1,30 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Facility implements IIdentifiable<UUID> {
 	private UUID id;
 	private String name;
 	//private ? content; TODO Create new class?
-	private FacilityType faciltyType;
-	private boolean status;
+	private FacilityType facilityType;
 	private Location location;
-	private double avrageScore;
+	private ArrayList<WrokHour> workingHours;
+	private double averageScore;
 	private boolean deleted;
 	
 	private UUID managerId;
 
-	public Facility(UUID id, String name, FacilityType faciltyType, boolean status, Location location,
-			double avrageScore, UUID managerId) {
+	public Facility(UUID id, String name, FacilityType facilityType, Location location,
+			ArrayList<WrokHour> workingHours, double averageScore, boolean deleted, UUID managerId) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.faciltyType = faciltyType;
-		this.status = status;
+		this.facilityType = facilityType;
 		this.location = location;
-		this.avrageScore = avrageScore;
+		this.workingHours = workingHours;
+		this.averageScore = averageScore;
+		this.deleted = deleted;
 		this.managerId = managerId;
 	}
 
@@ -48,22 +50,6 @@ public class Facility implements IIdentifiable<UUID> {
 		this.name = name;
 	}
 
-	public FacilityType getFaciltyType() {
-		return faciltyType;
-	}
-
-	public void setFaciltyType(FacilityType faciltyType) {
-		this.faciltyType = faciltyType;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
 	public Location getLocation() {
 		return location;
 	}
@@ -72,12 +58,20 @@ public class Facility implements IIdentifiable<UUID> {
 		this.location = location;
 	}
 
-	public double getAvrageScore() {
-		return avrageScore;
+	public FacilityType getFacilityType() {
+		return facilityType;
 	}
 
-	public void setAvrageScore(double avrageScore) {
-		this.avrageScore = avrageScore;
+	public void setFacilityType(FacilityType facilityType) {
+		this.facilityType = facilityType;
+	}
+
+	public double getAverageScore() {
+		return averageScore;
+	}
+
+	public void setAverageScore(double averageScore) {
+		this.averageScore = averageScore;
 	}
 
 	public UUID getManagerId() {
@@ -97,8 +91,14 @@ public class Facility implements IIdentifiable<UUID> {
 	public boolean isDeleted() {
 		return deleted;
 	}
-	
-	
+
+	public ArrayList<WrokHour> getWorkingHours() {
+		return workingHours;
+	}
+
+	public void setWorkingHours(ArrayList<WrokHour> workingHours) {
+		this.workingHours = workingHours;
+	}
 	
 	
 }

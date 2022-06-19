@@ -7,6 +7,7 @@ Vue.component("home-component", {
 	template: `
 		<div>
 			<h1>Home</h1>
+			<facilities></facilities>
 		</div>
 	`,
 	methods: {

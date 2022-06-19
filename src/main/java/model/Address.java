@@ -3,14 +3,14 @@ package model;
 public class Address {
 	private String streetName;
 	private int number;
-	private String City;
+	private String city;
 	private int postalCode;
 	
 	public Address(String streetName, int number, String city, int postalCode) {
 		super();
 		this.streetName = streetName;
 		this.number = number;
-		City = city;
+		this.city = city;
 		this.postalCode = postalCode;
 	}
 	
@@ -35,11 +35,11 @@ public class Address {
 	}
 
 	public String getCity() {
-		return City;
+		return city;
 	}
 
 	public void setCity(String city) {
-		City = city;
+		this.city = city;
 	}
 
 	public int getPostalCode() {

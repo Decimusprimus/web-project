@@ -1,0 +1,29 @@
+[
+    {
+        "id" : "d7826faa-a101-4a9b-8a98-586916a872b8",
+        "name" : "Iron Republic 2",
+        "facilityType" : "GYM",
+        "location" : {
+            "longitude" : 0, 
+            "latitude" : 0,
+            "address" : {
+                "streetName" : "Nehruova",
+                "number" : 51,
+                "city" : "Beograd",
+                "postalCode" : "11000"
+            }
+        },
+        "workingHours" : [
+            {"day" : "Mon.", "from" : "00:00", "to" : "00:00"},
+            {"day" : "Tue.", "from" : "00:00", "to" : "00:00"},
+            {"day" : "Wed.", "from" : "00:00", "to" : "00:00"},
+            {"day" : "Thu.", "from" : "00:00", "to" : "00:00"},
+            {"day" : "Fri.", "from" : "00:00", "to" : "00:00"},
+            {"day" : "Sat.", "from" : "00:00", "to" : "00:00"},
+            {"day" : "Sun.", "from" : "00:00", "to" : "00:00"}
+        ],
+        "averageScore": 4.8,
+        "deleted" : false
+    }
+
+]

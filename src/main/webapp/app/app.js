@@ -1,6 +1,8 @@
 const Home = { template: '<home-component></home-component>' }
 const Login = { template: '<login></login>' }
-const RegisterCustomer = { template: '<register-customer></register-customer>'}
+const RegisterCustomer = { template: '<register-customer></register-customer>' }
+const FacilityCard = { template: '<facility-card></facility-card>' }
+const Facilities = { template: '<facilities></facilities>' }
 
 const router = new VueRouter({
 	mode: 'hash',
