@@ -4,6 +4,7 @@ Vue.component("facility-card", {
     return {
         a : null,
         image: '',
+        isOpen: true,
     }
     },
     template: `
@@ -11,13 +12,23 @@ Vue.component("facility-card", {
             <img class="card-img-top facility-img" v-bind:src="image">
             <div class="card-body">
                 <div>
-                    <h5 class="card-title">{{facility.name}}<span class="badge badge-primary">4.5</span></h5>
-                    <h4>{{getAddress()}}</h4>
-                    <h4>{{facility.facilityType}}</h4>
-                    <h4>Working hours</h4>
-                    <ul>
-                        <li v-for="item in facility.workingHours">{{item.day}} &emsp; {{item.from}}-{{item.to}}</li>
-                    </ul>
+                    <h4 class="card-title">{{facility.name}} &emsp; <span class="badge badge-primary">4.5</span></h4>
+                    <h5>{{getAddress()}}</h5>
+                    <h6>{{facility.facilityType}}</h6>
+                    <div>
+                        <button class="btn btn-outline-success" v-if="isOpen">Open</button>
+                        <button class="btn btn-outline-danger" v-else>Closed</button>
+                        <div class="btn-group dropup">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Working hours</button>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-item work-hour " v-for="item in facility.workingHours">
+                                    <a>{{item.day}}</a>
+                                    <span>&emsp;</span>
+                                    <a>{{item.from}} - {{item.to}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,10 +39,28 @@ Vue.component("facility-card", {
         },
         getImage: function() {
             return '/facilities/'+this.facility.id+'/logo';
+        },
+        checkIsOpen: function() {
+            var today = new Date(); 
+            var workHour = this.facility.workingHours[today.getDay()-1];
+            var from = workHour.from.split(":");
+            var to = workHour.to.split(":");
+            var fromDate = new Date();
+            fromDate.setHours(parseInt(from[0]), parseInt(from[1]));
+            var toDate = new Date();
+            toDate.setHours(parseInt(to[0]), parseInt(to[1]));
+            if(fromDate.getTime() === toDate.getTime()) {
+                this.isOpen = true;
+            } else if(fromDate.getTime() <= today.getTime() && toDate.getTime() >= today.getTime() ) {
+                this.isOpen = true;
+            } else {
+                this.isOpen = false;
+            }
         }
         
     },
     mounted() {
         this.image = '/facilities/'+this.facility.id+'/logo';
+        this.checkIsOpen();
     },
     });

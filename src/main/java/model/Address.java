@@ -50,7 +50,11 @@ public class Address {
 		this.postalCode = postalCode;
 	}
 	
+	public boolean check(String location) {
+		if(streetName.toLowerCase().contains(location.toLowerCase()) || city.toLowerCase().contains(location.toLowerCase())) {
+			return true;
+		}
+		return false;
+	}
 	
-	
-
 }

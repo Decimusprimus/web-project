@@ -100,5 +100,17 @@ public class Facility implements IIdentifiable<UUID> {
 		this.workingHours = workingHours;
 	}
 	
+	public boolean compereType(String type) {
+		if(type.isBlank()) {
+			return false;
+		}
+		FacilityType fType = FacilityType.valueOf(type);
+		if(this.facilityType.compareTo(fType)==0) {
+			return true;
+		}
+		return false;
+		
+	}
+	
 	
 }

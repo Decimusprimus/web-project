@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import model.Facility;
+import model.FacilityType;
 import repositories.FacilityRepository;
 
 public class FaciltiyService {
@@ -31,6 +32,13 @@ public class FaciltiyService {
 			}
 		}
 		return null;
+	}
+	
+	public ArrayList<Facility> search(String name, String location, String type) {
+		if(name.isBlank() && location.isBlank() && type.isBlank()) {
+			return (ArrayList<Facility>) facilityRepository.getAll();
+		}
+		return facilityRepository.search(name, location, type);
 	}
 
 }

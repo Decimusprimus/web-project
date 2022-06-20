@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 
 import model.Facility;
+import model.FacilityType;
 
 public class FacilityController {
 	private static Gson gson = new Gson();
@@ -56,6 +57,15 @@ public class FacilityController {
 			response.status(500);
 			return "";
 		}
+	};
+	
+	public static Route SearchFacilities = (Request request, Response response) -> {
+		String name = request.queryParams("name");
+		String location = request.queryParams("location");
+		String type = request.queryParams("type");
+		ArrayList<Facility> collection = faciltyService.search(name, location, type); 
+		response.type("application/json");
+		return gson.toJson(collection);
 	};
 
 }

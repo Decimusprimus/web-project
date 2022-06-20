@@ -43,6 +43,7 @@ public class SparkAppMain {
 		
 		get("/facilities", FacilityController.GetAll);
 		get("/facilities/:id/logo", FacilityController.GetLogo);
+		get("/facilities/search", FacilityController.SearchFacilities);
 		
 	}
 

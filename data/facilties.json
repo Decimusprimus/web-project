@@ -24,6 +24,32 @@
         ],
         "averageScore": 4.8,
         "deleted" : false
+    },
+    {
+        "id" : "f6986a95-fa1b-465f-8980-3b8f4053859f",
+        "name" : "Fitness Flex",
+        "facilityType" : "GYM",
+        "location" : {
+            "longitude" : 0, 
+            "latitude" : 0,
+            "address" : {
+                "streetName" : "Sutjeska",
+                "number" : 2,
+                "city" : "Novi Sad",
+                "postalCode" : "21000"
+            }
+        },
+        "workingHours" : [
+            {"day" : "Mon.", "from" : "06:00", "to" : "23:00"},
+            {"day" : "Tue.", "from" : "06:00", "to" : "23:00"},
+            {"day" : "Wed.", "from" : "06:00", "to" : "23:00"},
+            {"day" : "Thu.", "from" : "06:00", "to" : "23:00"},
+            {"day" : "Fri.", "from" : "06:00", "to" : "23:00"},
+            {"day" : "Sat.", "from" : "08:00", "to" : "22:00"},
+            {"day" : "Sun.", "from" : "08:00", "to" : "22:00"}
+        ],
+        "averageScore": 4.7,
+        "deleted" : false
     }
 
 ]
