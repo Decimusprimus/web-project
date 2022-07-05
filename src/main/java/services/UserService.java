@@ -3,6 +3,7 @@ package services;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import dto.ChangePasswordDTO;
 import dto.RegisterCustomerDTO;
 import dto.UserInfoDTO;
 import model.Admin;
@@ -107,6 +108,16 @@ public class UserService {
 			}
 		}
 		return null;
+	}
+	
+	public boolean ChangePassword(String userId, ChangePasswordDTO changePasswordDTO) {
+		User user = userRepository.getById(UUID.fromString(userId));
+		if(user.getPassword().compareTo(changePasswordDTO.getOldPassword()) == 0 && changePasswordDTO.CheckNewPassword()) {
+			user.setPassword(changePasswordDTO.getNewPassword());
+			userRepository.update(user);
+			return true;
+		}
+		return false;
 	}
 	
 

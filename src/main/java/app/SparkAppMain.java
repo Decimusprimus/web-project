@@ -64,6 +64,7 @@ public class SparkAppMain {
 		get("/user/:id", UsersController.GetUserInfo);
 		put("/user/:id", UsersController.UpdateUserInfo);
 		post("/user/:id/username", UsersController.UpdateUsername);
+		post("/user/:id/password", UsersController.ChangePassword);
 		
 		get("/facilities", FacilityController.GetAll);
 		get("/facilities/:id/logo", FacilityController.GetLogo);

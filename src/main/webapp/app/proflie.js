@@ -4,7 +4,8 @@ Vue.component("profile", {
             id: '',
             username: '',
             usernameCurrent: '',
-            password: '',
+            oldPassword: '',
+            newPassword: '',
             confirmPassword: '',
             firstName: '',
             lastName: '',
@@ -17,6 +18,7 @@ Vue.component("profile", {
         <div class="p-container">
             <div class="p-header">
                 <h3>{{usernameCurrent}}</h3>
+                <hr/>
             </div>
             <div class="p-col">
                 <div class="col-md-2 mb-3">
@@ -63,9 +65,10 @@ Vue.component("profile", {
                         <div class="tab-pane fade" id="p-tabs-account" role="tabpanel" aria-labelledby="p-tabs-account-tab">
                             <div  style="width: 60%; margin: auto;">
                                 <h2>Account</h2>
-                                <div>
-                                    <h3>Change username</h3>
-                                    <form>
+                                <hr/>
+                                <div style="margin-top: 30px;">
+                                    <h4>Change username</h4>
+                                    <form style="margin-top: 30px">
                                         <div class="form-group">
                                             <label for="usernameRegister">Username</label>
                                             <input type="text" class="form-control" id="usernameRegister" v-model="username" >                        
@@ -73,6 +76,26 @@ Vue.component("profile", {
                                         <button type="submit" class="btn btn-dark" v-on:click="updateUsername" style="width: 100%; margin-top: 30px">Save</button>
                                     </form>
                                 </div>
+                                <hr/>
+                                <div style="margin-top: 30px;">
+                                    <h4>Change password</h4>
+                                    <form style="margin-top: 30px">
+                                        <div class="form-group">
+                                            <label for="oldPassword">Old Password</label>
+                                            <input type="password" class="form-control" id="oldPassword" v-model="oldPassword" >                        
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newPassword">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword" v-model="newPassword" >                        
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword" v-model="confirmPassword" >                        
+                                        </div>
+                                        <button type="submit" class="btn btn-dark" v-on:click="updatePassword" style="width: 100%; margin-top: 30px">Save</button>
+                                    </form>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -108,7 +131,21 @@ Vue.component("profile", {
                 this.username = res.data.username;
                 this.usernameCurrent = res.data.username;
             })
+        },
+
+        updatePassword: function() {
+            var updatePasswordDTO = {
+                oldPassword: this.oldPassword,
+                newPassword: this.newPassword,
+                confirmPassword: this.confirmPassword
+            }
+            
+            axios.post('/user/'+this.id+'/password', JSON.stringify(updatePasswordDTO))
+            .then(res => {
+                console.log(res.data);
+            })
         }
+
 
     },
     mounted() {

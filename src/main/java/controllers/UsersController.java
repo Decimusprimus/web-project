@@ -10,6 +10,7 @@ import static app.SparkAppMain.gson;
 
 import com.google.gson.Gson;
 
+import dto.ChangePasswordDTO;
 import dto.LoginDTO;
 import dto.RegisterCustomerDTO;
 import dto.UserInfoDTO;
@@ -88,6 +89,15 @@ public class UsersController {
 			return gson.toJson(userInfo);
 		}
 		response.status(400);
+		return "";
+	};
+	
+	public static Route ChangePassword =  (Request request, Response response) -> {
+		String userId = request.params(":id");
+		ChangePasswordDTO changePasswordDTO = gson.fromJson(request.body(), ChangePasswordDTO.class);
+		if(!userService.ChangePassword(userId, changePasswordDTO)) {
+			response.status(400);
+		}
 		return "";
 	};
 }
