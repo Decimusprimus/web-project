@@ -53,3 +53,10 @@
 .search-field{
     margin-left: 20px;
 }
+
+.nav-profile{
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+    width: 100%;
+}

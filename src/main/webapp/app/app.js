@@ -3,13 +3,15 @@ const Login = { template: '<login></login>' }
 const RegisterCustomer = { template: '<register-customer></register-customer>' }
 const FacilityCard = { template: '<facility-card></facility-card>' }
 const Facilities = { template: '<facilities></facilities>' }
+const Profile = {template: '<profile></profile>'}
 
 const router = new VueRouter({
 	mode: 'hash',
 	routes: [
 		{ path: '/', component: Home },
 		{ path: '/login', component: Login },
-		{ path: '/register', component: RegisterCustomer }
+		{ path: '/register', component: RegisterCustomer },
+		{ path: '/profile', component: Profile }
 	]
 })
 
@@ -19,6 +21,8 @@ var app = new Vue({
 	data: {
 		isLoggedIn : false,
 		user : String,
+		userRole : '',
+		username : '',
 	},
 
 	mounted() {
@@ -32,6 +36,7 @@ var app = new Vue({
 			} else {
 				this.isLoggedIn = true;
 				this.user = window.localStorage.getItem('user');
+				this.username = window.localStorage.getItem('username');
 			}
 		},
 
@@ -39,9 +44,15 @@ var app = new Vue({
 			axios.post('/user/logout')
 			.then(res => {
 				window.localStorage.removeItem('user');
+				window.localStorage.removeItem('userRole');
+				window.localStorage.removeItem('username');
 				this.isLoggedIn = false;
 				this.$router.go(0);
 			})
+		},
+
+		goToProfile: function() {
+			this.$router.push('/profile');
 		}
 	}
 })

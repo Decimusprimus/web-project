@@ -37,6 +37,8 @@ Vue.component("login", {
             axios.post('/user/login', JSON.stringify(loginDTO))
             .then(res => {
                 window.localStorage.setItem('user', res.data.id);
+                window.localStorage.setItem('userRole', res.data.userRole);
+                window.localStorage.setItem('username', res.data.username);
                 this.$root.checkLogin();
                 this.$router.push('/');
             })

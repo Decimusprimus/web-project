@@ -1,0 +1,12 @@
+[
+  {
+    "id": "d0c6a75c-153d-452f-8ac1-3cfe53e04a63",
+    "username": "admin",
+    "firstName": "Djuro",
+    "lastName": "Masnikovic",
+    "dateOfBirth": "1996-08-02",
+    "userRole": "ADMIN",
+    "gender": "MALE",
+    "deleted": false
+  }
+]

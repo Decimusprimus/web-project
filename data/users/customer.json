@@ -1,0 +1,26 @@
+[
+    {
+        "type": "BRONZE",
+        "points": 0,
+        "id": "13851eab-7be8-49ae-8f1f-be61abd5af0c",
+        "username": "aaaaa",
+        "firstName": "",
+        "lastName": "",
+        "dateOfBirth": "2022-06-07",
+        "userRole": "CUSTOMER",
+        "gender": "MALE",
+        "deleted": false
+    },
+    {
+        "type": "BRONZE",
+        "points": 0,
+        "id": "e3bbaeeb-eaf0-4d44-93e7-d08fedc11838",
+        "username": "simo",
+        "firstName": "Simo",
+        "lastName": "Simic",
+        "dateOfBirth": "2004-06-15",
+        "userRole": "CUSTOMER",
+        "gender": "MALE",
+        "deleted": false
+    }
+]

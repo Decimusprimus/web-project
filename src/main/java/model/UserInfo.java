@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import dto.UserInfoDTO;
+
 public abstract class UserInfo implements IIdentifiable<UUID> {
 	private UUID id;
 	private String username;
@@ -90,7 +92,12 @@ public abstract class UserInfo implements IIdentifiable<UUID> {
 		return deleted;
 	}
 
-
+	public void updateUserInfo(UserInfoDTO userInfoDTO) {
+		this.firstName = userInfoDTO.getFirstName();
+		this.lastName = userInfoDTO.getLastName();
+		this.dateOfBirth = userInfoDTO.getDateOfBirth();
+		this.gender = userInfoDTO.getGender();
+	}
 	
 	
 

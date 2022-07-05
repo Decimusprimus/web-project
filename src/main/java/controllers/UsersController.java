@@ -6,16 +6,19 @@ import spark.Route;
 import spark.Session;
 
 import static app.SparkAppMain.userService;
+import static app.SparkAppMain.gson;
 
 import com.google.gson.Gson;
 
 import dto.LoginDTO;
 import dto.RegisterCustomerDTO;
+import dto.UserInfoDTO;
 import model.Customer;
 import model.User;
+import model.UserInfo;
 
 public class UsersController {
-	private static Gson gson = new Gson();
+	
 	
 	public static Route HandleLogin = (Request request, Response response) -> {
 		response.type("application/json");
@@ -50,5 +53,41 @@ public class UsersController {
 		}
 		return gson.toJson(customer);
 	};
+
+	public static Route GetUserInfo = (Request request, Response response) -> {
+		String userId = request.params(":id");
+		if(!userId.isEmpty()) {
+			UserInfo userInfo = userService.GetUserInfo(userId);
+			if(userInfo != null) {
+				response.type("application/json");
+				return gson.toJson(userInfo);
+			}
+		}
+		response.status(400);
+		return "";
+	};
 	
+	public static Route UpdateUserInfo = (Request request, Response response) -> {
+		String userId = request.params(":id");
+		UserInfoDTO userInfoDTO = gson.fromJson(request.body(), UserInfoDTO.class);
+		UserInfo userInfo  = userService.UpdateUserInfo(userId, userInfoDTO);
+		if(userInfo != null) {
+			response.type("application/json");
+			return gson.toJson(userInfo);
+		}
+		response.status(400);
+		return "";
+	};
+	
+	public static Route UpdateUsername = (Request request, Response response) -> {
+		String userId = request.params(":id");
+		String username = gson.fromJson(request.body(), String.class);
+		UserInfo userInfo = userService.UpdateUsername(userId, username);
+		if(userInfo != null) {
+			response.type("application/json");
+			return gson.toJson(userInfo);
+		}
+		response.status(400);
+		return "";
+	};
 }

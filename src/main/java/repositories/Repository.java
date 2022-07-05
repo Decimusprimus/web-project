@@ -16,18 +16,19 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
 import model.IIdentifiable;
+import static app.SparkAppMain.gson;
 
 public class Repository<T extends IIdentifiable<Id>, Id> implements IRepository<T, Id>{
 	
 	private String path;
 	private Type classType;
-	private Gson gson;
+	private Gson ggson;
 	
-	public Repository(String path, Type classType, Gson gson) {
+	public Repository(String path, Type classType, Gson ggson) {
 		super();
 		this.path = path;
 		this.classType = classType;
-		this.gson = gson;
+		this.ggson = gson;
 		checkForFIle();
 	}
 
