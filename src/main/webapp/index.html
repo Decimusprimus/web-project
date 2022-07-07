@@ -4,6 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="css/app.css" rel="stylesheet"/>
 		<link href="css/proflie.css" rel="stylesheet"/>
@@ -13,10 +14,17 @@
 	
 	<div id="app" >
 		<nav class="navbar sticky-top navbar-expand-xl navbar-dark bg-dark">
-			<a class="nav-link navbar-nav" href="#/">Home</a>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#/">Home</a>
+				</li>
+				<li class="nav-item" style="width: max-content;" v-if="userRole === 'ADMIN'">
+					<a class="nav-link navbar-nav" href="#/facility/new">Create new Facility</a>
+				</li>
+			</ul>
 			<span></span>
-			<div class="nav-profile">
-				<a v-if="!isLoggedIn" class="nav-link" href="#/login" >Login</a>
+			<div class="nav-profile" v-if="!isLoggedIn">
+				<a  class="nav-link" href="#/login" >Login</a>
 			</div>
 
 			<ul class="navbar-nav nav-profile" v-if="isLoggedIn">
@@ -45,12 +53,16 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
 		<script src="app/home.js"></script>
 		<script src="app/login.js"></script>
 		<script src="app/register-customer.js"></script>
 		<script src="app/facility-card.js"></script>
 		<script src="app/facilities.js"></script>
 		<script src="app/proflie.js"></script>
+		<script src="app/location-modal.js"></script>
+		<script src="app/location-map.js"></script>
+		<script src="app/facility-new.js"></script>
 		<script src="app/app.js"></script>
 	</body>
 </html>

@@ -3,7 +3,8 @@ const Login = { template: '<login></login>' }
 const RegisterCustomer = { template: '<register-customer></register-customer>' }
 const FacilityCard = { template: '<facility-card></facility-card>' }
 const Facilities = { template: '<facilities></facilities>' }
-const Profile = {template: '<profile></profile>'}
+const Profile = { template: '<profile></profile>' }
+const FacilityNew = { template: '<facility-new></facility-new>' }
 
 const router = new VueRouter({
 	mode: 'hash',
@@ -11,7 +12,8 @@ const router = new VueRouter({
 		{ path: '/', component: Home },
 		{ path: '/login', component: Login },
 		{ path: '/register', component: RegisterCustomer },
-		{ path: '/profile', component: Profile }
+		{ path: '/profile', component: Profile },
+		{ path: '/facility/new', component: FacilityNew }
 	]
 })
 
@@ -37,6 +39,7 @@ var app = new Vue({
 				this.isLoggedIn = true;
 				this.user = window.localStorage.getItem('user');
 				this.username = window.localStorage.getItem('username');
+				this.userRole = window.localStorage.getItem('userRole');
 			}
 		},
 
