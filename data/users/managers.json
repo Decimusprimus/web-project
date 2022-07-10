@@ -1,0 +1,35 @@
+[
+  {
+    "facilityId": null,
+    "id": "7d06e6fb-15be-4081-80fd-6b6da4f4bc5d",
+    "username": "manager",
+    "firstName": "Milan",
+    "lastName": "Milanovic",
+    "dateOfBirth": "2009-06-17",
+    "userRole": "MANAGER",
+    "gender": "MALE",
+    "deleted": false
+  },
+  {
+    "facilityId": null,
+    "id": "48fccdd8-22aa-415f-a0f6-117509fd6ae3",
+    "username": "asdf",
+    "firstName": "asdf",
+    "lastName": "asdf",
+    "dateOfBirth": "2022-06-29",
+    "userRole": "MANAGER",
+    "gender": "FEMALE",
+    "deleted": false
+  },
+  {
+    "facilityId": null,
+    "id": "82912016-11db-4035-8be8-083a411ace65",
+    "username": "134",
+    "firstName": "1234",
+    "lastName": "1234",
+    "dateOfBirth": "2022-06-28",
+    "userRole": "MANAGER",
+    "gender": "OTHER",
+    "deleted": false
+  }
+]

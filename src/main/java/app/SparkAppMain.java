@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import repositories.AdminRepository;
 import repositories.CustomerRepository;
 import repositories.FacilityRepository;
+import repositories.ManagerRepository;
 import repositories.UserRepository;
 import services.FaciltiyService;
 import services.UserService;
@@ -34,7 +35,9 @@ public class SparkAppMain {
 	public static UserRepository userRepository;
 	public static CustomerRepository customerRepository;
 	public static AdminRepository adminRepository;
+	public static ManagerRepository managerRepository;
 	public static FacilityRepository facilityRepository;
+	
 	public static UserService userService;
 	public static FaciltiyService faciltyService;
 	
@@ -45,26 +48,32 @@ public class SparkAppMain {
 				.setPrettyPrinting()
 				.registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
 				.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
+				.serializeNulls()
 				.create();
 		
 		userRepository = new UserRepository("./data/users/users.json");
 		customerRepository = new CustomerRepository("./data/users/customer.json");
 		adminRepository = new AdminRepository("./data/users/admins.json");
+		managerRepository = new ManagerRepository("./data/users/managers.json");
 		facilityRepository = new FacilityRepository("./data/facilities/facilities.json");
 		
-		userService = new UserService(userRepository, customerRepository, adminRepository);
+		userService = new UserService(userRepository, customerRepository, adminRepository, managerRepository);
 		faciltyService = new FaciltiyService(facilityRepository);
 		
 		port(8080);
 		staticFiles.externalLocation(new File("src/main/webapp").getCanonicalPath());
 		
 		post("/user/login", UsersController.HandleLogin);
+		post("/user/relogin", UsersController.Relogin);
 		post("/user/logout", UsersController.HandleLogout);
 		post("/user/register/customer", UsersController.RegisterCustomer);
+		post("/user/register/manager", UsersController.RegisterManager);
 		get("/user/:id", UsersController.GetUserInfo);
 		put("/user/:id", UsersController.UpdateUserInfo);
 		post("/user/:id/username", UsersController.UpdateUsername);
 		post("/user/:id/password", UsersController.ChangePassword);
+		
+		get("/users/manager/free", UsersController.GetFreeManagers);
 		
 		get("/facilities", FacilityController.GetAll);
 		get("/facilities/:id/logo", FacilityController.GetLogo);

@@ -6,6 +6,9 @@ import spark.Route;
 import spark.Session;
 
 import static app.SparkAppMain.userService;
+
+import java.util.UUID;
+
 import static app.SparkAppMain.gson;
 
 import com.google.gson.Gson;
@@ -13,10 +16,13 @@ import com.google.gson.Gson;
 import dto.ChangePasswordDTO;
 import dto.LoginDTO;
 import dto.RegisterCustomerDTO;
+import dto.UserId;
 import dto.UserInfoDTO;
 import model.Customer;
+import model.Manager;
 import model.User;
 import model.UserInfo;
+import model.UserRole;
 
 public class UsersController {
 	
@@ -40,6 +46,17 @@ public class UsersController {
 		return "";
 	};
 	
+	public static Route Relogin = (Request request, Response response) -> {
+		UserId userId = gson.fromJson(request.body(), UserId.class);
+		User user = userService.GetUser(userId.getId());
+		if(user != null) {
+			request.session().attribute("user", user.getId());
+			return gson.toJson(user);
+		}
+		response.status(400);
+		return "Invalid user";
+	};
+	
 	public static Route RegisterCustomer = (Request request, Response response) -> {
 		RegisterCustomerDTO registerDTO = gson.fromJson(request.body(), RegisterCustomerDTO.class);
 		response.type("application/json");
@@ -53,6 +70,22 @@ public class UsersController {
 			return "";
 		}
 		return gson.toJson(customer);
+	};
+	
+	public static Route RegisterManager = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID id = sesion.attribute("user");
+		User user = userService.GetUser(id);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.ADMIN) {
+				RegisterCustomerDTO registerDTO = gson.fromJson(request.body(), RegisterCustomerDTO.class);
+				Manager manager = userService.createNewManager(registerDTO);
+				response.type("application/json");
+				return gson.toJson(manager);
+			}
+		}
+		response.status(403);
+		return "";
 	};
 
 	public static Route GetUserInfo = (Request request, Response response) -> {
@@ -99,5 +132,10 @@ public class UsersController {
 			response.status(400);
 		}
 		return "";
+	};
+	
+	public static Route GetFreeManagers =  (Request request, Response response) -> {
+		response.type("application/json");
+		return gson.toJson(userService.GetAllFreeManagers());
 	};
 }

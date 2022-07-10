@@ -1,6 +1,7 @@
 package services;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import dto.ChangePasswordDTO;
@@ -8,23 +9,27 @@ import dto.RegisterCustomerDTO;
 import dto.UserInfoDTO;
 import model.Admin;
 import model.Customer;
+import model.Manager;
 import model.User;
 import model.UserInfo;
 import model.UserRole;
 import repositories.AdminRepository;
 import repositories.CustomerRepository;
+import repositories.ManagerRepository;
 import repositories.UserRepository;
 
 public class UserService {
 	private UserRepository userRepository;
 	private CustomerRepository customerRepository;
 	private AdminRepository adminRepository;
+	private ManagerRepository managerRepository;
 	
-	public UserService(UserRepository userRepository, CustomerRepository customerRepository, AdminRepository adminRepository) {
+	public UserService(UserRepository userRepository, CustomerRepository customerRepository, AdminRepository adminRepository, ManagerRepository managerRepository) {
 		super();
 		this.userRepository = userRepository;
 		this.customerRepository = customerRepository;
 		this.adminRepository = adminRepository;
+		this.managerRepository = managerRepository;
 	}
 
 	public User checkUserLogin(String username, String password) {
@@ -51,6 +56,18 @@ public class UserService {
 		Customer customer = new Customer(newUser.getId(), newUser.getUsername(), dto.getFirstName(), dto.getLastName(), date, UserRole.CUSTOMER, dto.getGender(), false);
 		customerRepository.create(customer);
 		return customer;
+	}
+	
+	public Manager createNewManager(RegisterCustomerDTO dto) {
+		User newUser = userRepository.createNewManager(dto.getUsername(), dto.getPassword());
+		if(newUser == null) {
+			return null;
+		}
+		LocalDate date = LocalDate.parse(dto.getDateOfBirth());
+		Manager manager = new Manager(newUser.getId(), newUser.getUsername(), dto.getFirstName(), dto.getLastName(), date, UserRole.MANAGER, dto.getGender(), false);
+		managerRepository.create(manager);
+		return manager;
+		
 	}
 	
 	public UserInfo GetUserInfo(String userId) {
@@ -118,6 +135,14 @@ public class UserService {
 			return true;
 		}
 		return false;
+	}
+	
+	public User GetUser(UUID id) {
+		return userRepository.getById(id);
+	}
+	
+	public ArrayList<Manager> GetAllFreeManagers() {
+		return managerRepository.getAllWithoutFacility();
 	}
 	
 

@@ -40,6 +40,19 @@ var app = new Vue({
 				this.user = window.localStorage.getItem('user');
 				this.username = window.localStorage.getItem('username');
 				this.userRole = window.localStorage.getItem('userRole');
+				var userId = {
+					id: this.user
+				}
+				axios.post('/user/relogin', JSON.stringify(userId))
+				.then(res => {
+					this.isLoggedIn = true;
+				})
+				.catch(err => {
+					this.isLoggedIn  = false;
+					window.localStorage.removeItem('user');
+					window.localStorage.removeItem('userRole');
+					window.localStorage.removeItem('username');
+				})
 			}
 		},
 

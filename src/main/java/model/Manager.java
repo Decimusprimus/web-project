@@ -14,6 +14,7 @@ public class Manager extends UserInfo {
 	public Manager(UUID id, String username, String firstName, String lastName, LocalDate dateOfBirth,
 			UserRole userRole, Gender gender, boolean status) {
 		super(id, username, firstName, lastName, dateOfBirth, userRole, gender, status);
+		this.facilityId = null;
 	}
 
 	public Manager(UUID id, String username, String firstName, String lastName, LocalDate dateOfBirth,

@@ -40,6 +40,19 @@ public class UserRepository extends Repository<User, UUID> {
 		return newUser;
 	}
 	
+	public User createNewManager(String username, String password) {
+		ArrayList<User> collection = (ArrayList<User>) getAll();
+		for(User u : collection) {
+			if(u.getUsername().equals(username)) {
+				return null;
+			}
+		}
+		User newUser = new User(username, password, UserRole.MANAGER);
+		collection.add(newUser);
+		saveAll(collection);
+		return newUser;
+	}
+	
 	
 
 }

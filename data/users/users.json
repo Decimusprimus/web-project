@@ -26,5 +26,26 @@
     "password": "1234",
     "userRole": "CUSTOMER",
     "deleted": false
+  },
+  {
+    "id": "7d06e6fb-15be-4081-80fd-6b6da4f4bc5d",
+    "username": "manager",
+    "password": "1234",
+    "userRole": "MANAGER",
+    "deleted": false
+  },
+  {
+    "id": "48fccdd8-22aa-415f-a0f6-117509fd6ae3",
+    "username": "asdf",
+    "password": "asdf",
+    "userRole": "MANAGER",
+    "deleted": false
+  },
+  {
+    "id": "82912016-11db-4035-8be8-083a411ace65",
+    "username": "134",
+    "password": "1234",
+    "userRole": "MANAGER",
+    "deleted": false
   }
 ]

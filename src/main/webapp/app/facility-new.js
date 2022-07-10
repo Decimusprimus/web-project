@@ -11,6 +11,9 @@ Vue.component("facility-new", {
         streetNumber: '',
         city: '',
         postalCode: '',
+        managers: [],
+        manager: [],
+        selectedManager: [],
 
     }
 },
@@ -68,8 +71,18 @@ template: `
                     <input type="file" ref="fileInput"  accept="image/jpeg, image/png, image/jpg" class="form-control form-control" id="facilityLogo" v-on:input="selectImgFile">
                 </div>
             </div>
-
-            <button class="btn btn-primary" v-on:click="createNewManager">Register new manager</button>
+            <hr/>
+            <h4>Select manager</h4>
+            <div>
+                <div class="form-group">
+                    <label>Manager</label>
+                    <select class="form-control" v-model="manager">
+                        <option v-for="item in managers" v-on:click="selectChange(item)">{{getManagerString(item)}}</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#registerManagerModal">Register new manager</button>
+                <register-manager id="registerManagerModal" v-on:newManager="selectManger"></register-manager>
+            </div>
         </form>
 
     </div>
@@ -97,10 +110,27 @@ methods: {
         this.streetNumber = item.address.house_number;
         this.city = item.address.city;
         this.postalCode = item.address.postcode;
+    },
+    getFreeManagers: function() {
+        axios.get("/users/manager/free")
+        .then(res => {
+            this.managers = res.data;
+        })
+    },
+    getManagerString(m) {
+        return m.firstName + ' ' +  m.lastName + ', ' + m.username;
+    },
+    selectManger: function(m) {
+        this.managers.push(m);
+        this.manager = this.getManagerString(m);
+        this.selectManger = m;
+    },
+    selectChange(item) {
+        this.selectedManager = item;
     }
 },
 mounted() {
-    
+    this.getFreeManagers();
 },
 computed: {
     logoImage () {
