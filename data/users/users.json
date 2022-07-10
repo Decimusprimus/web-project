@@ -47,5 +47,12 @@
     "password": "1234",
     "userRole": "MANAGER",
     "deleted": false
+  },
+  {
+    "id": "82261773-0d57-48b9-8150-c3be0f304117",
+    "username": "asdff",
+    "password": "asdf",
+    "userRole": "CUSTOMER",
+    "deleted": false
   }
 ]

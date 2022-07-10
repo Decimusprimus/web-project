@@ -62,12 +62,12 @@ public class UsersController {
 		response.type("application/json");
 		if(!registerDTO.getPassword().equals(registerDTO.getPasswordConfirm())) {
 			response.status(400);
-			return "";
+			return "Passwords don't mach";
 		}
 		Customer customer = userService.createNewCustomer(registerDTO);
 		if(customer == null) {
 			response.status(400);
-			return "";
+			return "Username already taken";
 		}
 		return gson.toJson(customer);
 	};
