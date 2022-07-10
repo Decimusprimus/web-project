@@ -17,53 +17,64 @@ Vue.component("register-customer", {
             dateOfBirthErrorMsg: '',
             genderErrorMsg: '',
             validUsernameResponse: true,
+            success: false
         }
     },
     template: `
     <div class="container" style="margin-top: 50px; width: 40%">
-        <h2>Create an account</h2>
-        <form  style="margin-top: 50px; margin-bottom: 100px">
-            <div class="form-group">
-                <label for="usernameRegister">Username</label>
-                <input type="email" class="form-control" id="usernameRegister" v-model="username" v-on:change="usernameChange" v-bind:class="{'is-invalid' : !validUsername() && submitted}">
-                <div class="invalid-feedback">{{usernameErrorMsg}}</div>
+        <div v-if="!success">
+            <h2>Create an account</h2>
+            <form  style="margin-top: 50px; margin-bottom: 100px">
+                <div class="form-group">
+                    <label for="usernameRegister">Username</label>
+                    <input type="email" class="form-control" id="usernameRegister" v-model="username" v-on:change="usernameChange" v-bind:class="{'is-invalid' : !validUsername() && submitted}">
+                    <div class="invalid-feedback">{{usernameErrorMsg}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="passwordRegister">Password</label>
+                    <input type="password" class="form-control" id="passwordRegister" v-model="password" v-bind:class="{'is-invalid' : !validPassword() && submitted}">
+                    <div class="invalid-feedback">{{passwordErrorMsg}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPasswordRegister">Confirm password</label>
+                    <input type="password" class="form-control" id="confirmPasswordRegister" v-model="confirmPassword" v-bind:class="{'is-invalid' : !validConfirmPassword() && submitted}">
+                    <div class="invalid-feedback">{{confirmPasswordErrorMsg}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="firstNameRegister">Fist name</label>
+                    <input type="email" class="form-control" id="firstNameRegister" v-model="firstName" v-bind:class="{'is-invalid' : !validFirstName() && submitted}">
+                    <div class="invalid-feedback">{{firstNameErrorMsg}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="lastNameRegister">Last name</label>
+                    <input type="email" class="form-control" id="lastNameRegister" v-model="lastName" v-bind:class="{'is-invalid' : !validLastName() && submitted}">
+                    <div class="invalid-feedback">{{lastNameErrorMsg}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="genderSelect">Gender</label>
+                    <select class="form-control" v-model="gender" v-bind:class="{'is-invalid' : !validGender() && submitted}">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                    <div class="invalid-feedback">{{genderErrorMsg}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="dateOfBirth">Date of birth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" v-model="dateOfBirth" v-bind:class="{'is-invalid' : !validDateOfBirth() && submitted}">
+                    <div class="invalid-feedback">{{dateOfBirthErrorMsg}}</div>
+                </div>
+                <button type="submit" class="btn btn-dark" v-on:click="register" style="width: 100%; margin-top: 30px">Register</button>
+            </form>
+        </div>
+        <div v-else>
+            <div class="alert alert-success" role="alert">
+                <h5>Successful registration</h5>
+                <p>You successfully registered, now proceed to login</p>
+                </br>
+                <a href="#/login" >Login</a>
             </div>
-            <div class="form-group">
-                <label for="passwordRegister">Password</label>
-                <input type="password" class="form-control" id="passwordRegister" v-model="password" v-bind:class="{'is-invalid' : !validPassword() && submitted}">
-                <div class="invalid-feedback">{{passwordErrorMsg}}</div>
-            </div>
-            <div class="form-group">
-                <label for="confirmPasswordRegister">Confirm password</label>
-                <input type="password" class="form-control" id="confirmPasswordRegister" v-model="confirmPassword" v-bind:class="{'is-invalid' : !validConfirmPassword() && submitted}">
-                <div class="invalid-feedback">{{confirmPasswordErrorMsg}}</div>
-            </div>
-            <div class="form-group">
-                <label for="firstNameRegister">Fist name</label>
-                <input type="email" class="form-control" id="firstNameRegister" v-model="firstName" v-bind:class="{'is-invalid' : !validFirstName() && submitted}">
-                <div class="invalid-feedback">{{firstNameErrorMsg}}</div>
-            </div>
-            <div class="form-group">
-                <label for="lastNameRegister">Last name</label>
-                <input type="email" class="form-control" id="lastNameRegister" v-model="lastName" v-bind:class="{'is-invalid' : !validLastName() && submitted}">
-                <div class="invalid-feedback">{{lastNameErrorMsg}}</div>
-            </div>
-            <div class="form-group">
-                <label for="genderSelect">Gender</label>
-                <select class="form-control" v-model="gender" v-bind:class="{'is-invalid' : !validGender() && submitted}">
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                </select>
-                <div class="invalid-feedback">{{genderErrorMsg}}</div>
-            </div>
-            <div class="form-group">
-                <label for="dateOfBirth">Date of birth</label>
-                <input type="date" class="form-control" id="dateOfBirth" v-model="dateOfBirth" v-bind:class="{'is-invalid' : !validDateOfBirth() && submitted}">
-                <div class="invalid-feedback">{{dateOfBirthErrorMsg}}</div>
-            </div>
-            <button type="submit" class="btn btn-dark" v-on:click="register" style="width: 100%; margin-top: 30px">Register</button>
-        </form>
+        </div>
     </div>
     `,
     mounted() {
@@ -173,6 +184,7 @@ Vue.component("register-customer", {
                 axios.post('/user/register/customer', JSON.stringify(registerDTO))
                 .then(res => {
                     console.log(res.data);
+                    this.success = true;
                 })
                 .catch(err => {
                     if(err.response.data === 'Username already taken') {

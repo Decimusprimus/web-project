@@ -7,13 +7,6 @@
     "deleted": false
   },
   {
-    "id": "d0c6a75c-153d-452f-8ac1-3cfe53e04a64",
-    "username": "djuro",
-    "password": "1234",
-    "userRole": "CUSTOMER",
-    "deleted": false
-  },
-  {
     "id": "13851eab-7be8-49ae-8f1f-be61abd5af0c",
     "username": "aaaaa",
     "password": "1234",
@@ -46,13 +39,6 @@
     "username": "134",
     "password": "1234",
     "userRole": "MANAGER",
-    "deleted": false
-  },
-  {
-    "id": "82261773-0d57-48b9-8150-c3be0f304117",
-    "username": "asdff",
-    "password": "asdf",
-    "userRole": "CUSTOMER",
     "deleted": false
   }
 ]

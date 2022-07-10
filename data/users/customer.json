@@ -22,17 +22,5 @@
     "userRole": "CUSTOMER",
     "gender": "MALE",
     "deleted": false
-  },
-  {
-    "type": "BRONZE",
-    "points": 0,
-    "id": "82261773-0d57-48b9-8150-c3be0f304117",
-    "username": "asdff",
-    "firstName": "asdf",
-    "lastName": "asdf",
-    "dateOfBirth": "2022-06-28",
-    "userRole": "CUSTOMER",
-    "gender": "MALE",
-    "deleted": false
   }
 ]
