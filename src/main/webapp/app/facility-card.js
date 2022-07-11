@@ -42,7 +42,11 @@ Vue.component("facility-card", {
         },
         checkIsOpen: function() {
             var today = new Date(); 
-            var workHour = this.facility.workingHours[today.getDay()-1];
+            var i = today.getDay()-1;
+            if(i == -1) {
+                i = 6;
+            }
+            var workHour = this.facility.workingHours[i];
             var from = workHour.from.split(":");
             var to = workHour.to.split(":");
             var fromDate = new Date();

@@ -69,9 +69,10 @@
     margin: 0 auto 20px;
     background-position: center center;
     background-size: cover;
-    border: gray;
-    border-radius: 5mm;
+    border: #ced4da;
     border-style: solid;
+    border-radius: 5mm;
+    border-width: 2px;
 }
 
 .location-container{
@@ -106,3 +107,22 @@
     height: 400px;
     width: 100%;
 }
+
+.wh-select-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+.wh-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr;   
+}
+
+.button-submit{
+    width: 100%; 
+    margin-top: 30px
+}
+

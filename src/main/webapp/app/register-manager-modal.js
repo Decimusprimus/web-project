@@ -67,7 +67,7 @@ template: `
 `,
 methods: {
     register: function(e) {
-       
+       e.preventDefault();
         var registerDTO = {
             username: this.username,
             password: this.password,

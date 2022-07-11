@@ -145,5 +145,11 @@ public class UserService {
 		return managerRepository.getAllWithoutFacility();
 	}
 	
+	
+	public void assignManagerToFacility(UUID managerId, UUID faciilityId) {
+		Manager manager = managerRepository.getById(managerId);
+		manager.setFacilityId(faciilityId);
+		managerRepository.update(manager);
+	}
 
 }

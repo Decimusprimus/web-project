@@ -7,6 +7,8 @@ import spark.Session;
 import spark.utils.IOUtils;
 
 import static app.SparkAppMain.faciltyService;
+import static app.SparkAppMain.gson;
+import static app.SparkAppMain.userService;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,11 +18,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.UUID;
+
+import javax.servlet.MultipartConfigElement;
 
 import com.google.gson.Gson;
 
+import dto.FacilityDTO;
 import model.Facility;
 import model.FacilityType;
+import model.User;
+import model.UserRole;
 
 public class FacilityController {
 	private static Gson gson = new Gson();
@@ -67,5 +75,33 @@ public class FacilityController {
 		response.type("application/json");
 		return gson.toJson(collection);
 	};
+	
+	public static Route CreateNewFacility = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID id = sesion.attribute("user");
+		User user = userService.GetUser(id);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.ADMIN) {
+				FacilityDTO dto = gson.fromJson(request.body(), FacilityDTO.class);
+				Facility facility = faciltyService.createNewFacility(dto);
+				response.type("application/json");
+				return gson.toJson(facility);
+			}
+		}
+		response.status(403);
+		return "";
+	};
+	
+	
+	public static Route UploadLogoImage = (Request request, Response response) -> {
+		String id = request.params(":id");
+		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+		Path path = Paths.get("./data/facilities/", id, "logo.jpg");
+	    try (InputStream is = request.raw().getPart("file").getInputStream()) {
+	    	Files.copy(is, path);
+	    }
+	    return "File uploaded";
+	};
+	
 
 }

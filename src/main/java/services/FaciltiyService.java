@@ -7,9 +7,12 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import dto.FacilityDTO;
 import model.Facility;
 import model.FacilityType;
 import repositories.FacilityRepository;
+
+import static app.SparkAppMain.userService;
 
 public class FaciltiyService {
 	private FacilityRepository facilityRepository;
@@ -39,6 +42,16 @@ public class FaciltiyService {
 			return (ArrayList<Facility>) facilityRepository.getAll();
 		}
 		return facilityRepository.search(name, location, type);
+	}
+	
+	public Facility createNewFacility(FacilityDTO dto) {
+		Facility newFacility = new Facility(dto.getName(), dto.getFacilityType(), dto.getLocation(), dto.getWorkingHours(), dto.getManagerId());
+		Facility facility = facilityRepository.create(newFacility);
+		String facilityDirectory = "./data/facilities/" + facility.getId().toString();
+		File f = new File(facilityDirectory);
+		f.mkdir();
+		userService.assignManagerToFacility(dto.getManagerId(), facility.getId());
+		return facility;
 	}
 
 }

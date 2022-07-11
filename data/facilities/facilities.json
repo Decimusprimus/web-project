@@ -1,55 +1,112 @@
 [
-    {
-        "id" : "d7826faa-a101-4a9b-8a98-586916a872b8",
-        "name" : "Iron Republic 2",
-        "facilityType" : "GYM",
-        "location" : {
-            "longitude" : 0, 
-            "latitude" : 0,
-            "address" : {
-                "streetName" : "Nehruova",
-                "number" : 51,
-                "city" : "Beograd",
-                "postalCode" : "11000"
-            }
-        },
-        "workingHours" : [
-            {"day" : "Mon.", "from" : "00:00", "to" : "00:00"},
-            {"day" : "Tue.", "from" : "00:00", "to" : "00:00"},
-            {"day" : "Wed.", "from" : "00:00", "to" : "00:00"},
-            {"day" : "Thu.", "from" : "00:00", "to" : "00:00"},
-            {"day" : "Fri.", "from" : "00:00", "to" : "00:00"},
-            {"day" : "Sat.", "from" : "00:00", "to" : "00:00"},
-            {"day" : "Sun.", "from" : "00:00", "to" : "00:00"}
-        ],
-        "averageScore": 4.8,
-        "deleted" : false
+  {
+    "id": "d7826faa-a101-4a9b-8a98-586916a872b8",
+    "name": "Iron Republic 2",
+    "facilityType": "GYM",
+    "location": {
+      "longitude": 0.0,
+      "latitude": 0.0,
+      "address": {
+        "streetName": "Nehruova",
+        "number": "51",
+        "city": "Beograd",
+        "postalCode": 11000
+      }
     },
-    {
-        "id" : "f6986a95-fa1b-465f-8980-3b8f4053859f",
-        "name" : "Fitness Flex",
-        "facilityType" : "GYM",
-        "location" : {
-            "longitude" : 0, 
-            "latitude" : 0,
-            "address" : {
-                "streetName" : "Sutjeska",
-                "number" : 2,
-                "city" : "Novi Sad",
-                "postalCode" : "21000"
-            }
-        },
-        "workingHours" : [
-            {"day" : "Mon.", "from" : "06:00", "to" : "23:00"},
-            {"day" : "Tue.", "from" : "06:00", "to" : "23:00"},
-            {"day" : "Wed.", "from" : "06:00", "to" : "23:00"},
-            {"day" : "Thu.", "from" : "06:00", "to" : "23:00"},
-            {"day" : "Fri.", "from" : "06:00", "to" : "23:00"},
-            {"day" : "Sat.", "from" : "08:00", "to" : "22:00"},
-            {"day" : "Sun.", "from" : "08:00", "to" : "22:00"}
-        ],
-        "averageScore": 4.7,
-        "deleted" : false
-    }
-
+    "workingHours": [
+      {
+        "day": "Mon.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Tue.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Wed.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Thu.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Fri.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Sat.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Sun.",
+        "from": "00:00",
+        "to": "00:00"
+      }
+    ],
+    "averageScore": 4.8,
+    "deleted": false,
+    "managerId": null
+  },
+  {
+    "id": "f6986a95-fa1b-465f-8980-3b8f4053859f",
+    "name": "Fitness Flex",
+    "facilityType": "GYM",
+    "location": {
+      "longitude": 0.0,
+      "latitude": 0.0,
+      "address": {
+        "streetName": "Sutjeska",
+        "number": "2",
+        "city": "Novi Sad",
+        "postalCode": 21000
+      }
+    },
+    "workingHours": [
+      {
+        "day": "Mon.",
+        "from": "06:00",
+        "to": "23:00"
+      },
+      {
+        "day": "Tue.",
+        "from": "06:00",
+        "to": "23:00"
+      },
+      {
+        "day": "Wed.",
+        "from": "06:00",
+        "to": "23:00"
+      },
+      {
+        "day": "Thu.",
+        "from": "06:00",
+        "to": "23:00"
+      },
+      {
+        "day": "Fri.",
+        "from": "06:00",
+        "to": "23:00"
+      },
+      {
+        "day": "Sat.",
+        "from": "08:00",
+        "to": "22:00"
+      },
+      {
+        "day": "Sun.",
+        "from": "08:00",
+        "to": "22:00"
+      }
+    ],
+    "averageScore": 4.7,
+    "deleted": false,
+    "managerId": null
+  }
 ]

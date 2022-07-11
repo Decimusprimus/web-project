@@ -11,7 +11,7 @@ Vue.component("location-map", {
 template: `
     <div class="map-container">
         <div class="map-search">
-            <input type="text" class="form-control" placeholder="Search" v-model="searchQuery" v-on:keyup.enter="search">
+            <input type="text" class="form-control" placeholder="Search" v-model="searchQuery" v-on:keydown.enter.prevent="search">
             <div v-for="item in searchResult" >
                 <div class="map-search-result" v-on:click="selectLocation(item)">
                     <h6>{{item.display_name}}</h6>

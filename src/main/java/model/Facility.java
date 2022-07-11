@@ -27,6 +27,23 @@ public class Facility implements IIdentifiable<UUID> {
 		this.deleted = deleted;
 		this.managerId = managerId;
 	}
+	
+	
+
+	public Facility(String name, FacilityType facilityType, Location location, ArrayList<WrokHour> workingHours,
+			UUID managerId) {
+		super();
+		this.id = UUID.randomUUID();
+		this.name = name;
+		this.facilityType = facilityType;
+		this.location = location;
+		this.workingHours = workingHours;
+		this.managerId = managerId;
+		this.deleted = false;
+		this.averageScore = 0;
+	}
+
+
 
 	public Facility() {
 		super();

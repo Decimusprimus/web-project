@@ -78,6 +78,8 @@ public class SparkAppMain {
 		get("/facilities", FacilityController.GetAll);
 		get("/facilities/:id/logo", FacilityController.GetLogo);
 		get("/facilities/search", FacilityController.SearchFacilities);
+		post("/facilities/new", FacilityController.CreateNewFacility);
+		post("/facilities/:id/logo", FacilityController.UploadLogoImage);
 		
 		
 	}
