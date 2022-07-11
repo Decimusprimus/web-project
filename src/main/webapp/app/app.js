@@ -5,6 +5,7 @@ const FacilityCard = { template: '<facility-card></facility-card>' }
 const Facilities = { template: '<facilities></facilities>' }
 const Profile = { template: '<profile></profile>' }
 const FacilityNew = { template: '<facility-new></facility-new>' }
+const Facility = { template: '<facility></facility>' }
 
 const router = new VueRouter({
 	mode: 'hash',
@@ -13,7 +14,8 @@ const router = new VueRouter({
 		{ path: '/login', component: Login },
 		{ path: '/register', component: RegisterCustomer },
 		{ path: '/profile', component: Profile },
-		{ path: '/facility/new', component: FacilityNew }
+		{ path: '/facility/new', component: FacilityNew },
+		{ path: '/facility/:id', component: Facility },
 	]
 })
 

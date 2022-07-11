@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
@@ -24,6 +25,10 @@ public class FaciltiyService {
 	
 	public ArrayList<Facility> getAll() {
 		return (ArrayList<Facility>) facilityRepository.getAllActive();
+	}
+	
+	public Facility getById(UUID id) {
+		return facilityRepository.getById(id);
 	}
 	
 	public String GetLogo(String id) throws IOException {

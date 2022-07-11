@@ -126,3 +126,52 @@
     margin-top: 30px
 }
 
+.facility-header{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+.facility-header-img {
+    height: 100px;
+    width: 100px;
+}
+
+.facility-type {
+    border: #ced4da;
+    border-style: solid;
+    border-radius: 2rem;
+    border-width: 2px;
+    margin-top: 20px;
+    width: max-content;
+}
+
+
+.facility-type-text {
+    margin: 8px 15px;
+    text-align: center;
+}
+
+.facility-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 25px;
+}
+
+.facility-map{
+    height: 100px;
+    width: 100px;
+}
+
+.f-bold{
+    font-weight: bold;
+}
+
+.f-light {
+    color: gray;
+}
+
+.f-wh{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}

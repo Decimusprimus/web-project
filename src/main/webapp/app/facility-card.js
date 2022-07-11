@@ -9,7 +9,7 @@ Vue.component("facility-card", {
     },
     template: `
         <div class="card facility-card">
-            <img class="card-img-top facility-img" v-bind:src="image">
+            <img class="card-img-top facility-img" v-bind:src="image" v-on:click="goToFacility">
             <div class="card-body">
                 <div>
                     <h4 class="card-title">{{facility.name}} &emsp; <span class="badge badge-primary">4.5</span></h4>
@@ -60,6 +60,10 @@ Vue.component("facility-card", {
             } else {
                 this.isOpen = false;
             }
+        },
+        goToFacility: function() {
+            const id = this.facility.id;
+            this.$router.push('/facility/'+ id);
         }
         
     },

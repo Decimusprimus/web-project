@@ -76,6 +76,7 @@ public class SparkAppMain {
 		get("/users/manager/free", UsersController.GetFreeManagers);
 		
 		get("/facilities", FacilityController.GetAll);
+		get("/facilities/:id", FacilityController.GetFacilityById);
 		get("/facilities/:id/logo", FacilityController.GetLogo);
 		get("/facilities/search", FacilityController.SearchFacilities);
 		post("/facilities/new", FacilityController.CreateNewFacility);

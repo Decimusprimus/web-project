@@ -103,5 +103,16 @@ public class FacilityController {
 	    return "File uploaded";
 	};
 	
+	public static Route GetFacilityById = (Request request, Response response) -> {
+		String id = request.params(":id");
+		Facility facility = faciltyService.getById(UUID.fromString(id));
+		if(facility != null) {
+			response.type("application/json");
+			return gson.toJson(facility);
+		}
+		response.status(400);
+		return "";
+	};
+	
 
 }
