@@ -8,12 +8,14 @@ import dto.ChangePasswordDTO;
 import dto.RegisterCustomerDTO;
 import dto.UserInfoDTO;
 import model.Admin;
+import model.Coach;
 import model.Customer;
 import model.Manager;
 import model.User;
 import model.UserInfo;
 import model.UserRole;
 import repositories.AdminRepository;
+import repositories.CoachRepository;
 import repositories.CustomerRepository;
 import repositories.ManagerRepository;
 import repositories.UserRepository;
@@ -23,13 +25,15 @@ public class UserService {
 	private CustomerRepository customerRepository;
 	private AdminRepository adminRepository;
 	private ManagerRepository managerRepository;
+	private CoachRepository coachRepository;
 	
-	public UserService(UserRepository userRepository, CustomerRepository customerRepository, AdminRepository adminRepository, ManagerRepository managerRepository) {
+	public UserService(UserRepository userRepository, CustomerRepository customerRepository, AdminRepository adminRepository, ManagerRepository managerRepository, CoachRepository coachRepository) {
 		super();
 		this.userRepository = userRepository;
 		this.customerRepository = customerRepository;
 		this.adminRepository = adminRepository;
 		this.managerRepository = managerRepository;
+		this.coachRepository = coachRepository;
 	}
 
 	public User checkUserLogin(String username, String password) {
@@ -70,6 +74,18 @@ public class UserService {
 		
 	}
 	
+	public Coach createNewCoach(RegisterCustomerDTO dto) {
+		User newUser = userRepository.createNewCoach(dto.getUsername(), dto.getPassword());
+		if(newUser == null) {
+			return null;
+		}
+		LocalDate date = LocalDate.parse(dto.getDateOfBirth());
+		Coach coach = new Coach(newUser.getId(), newUser.getUsername(), dto.getFirstName(), dto.getLastName(), date, UserRole.COACH, dto.getGender(), false);
+		coachRepository.create(coach);
+		return coach;
+		
+	}
+	
 	public UserInfo GetUserInfo(String userId) {
 		User user = userRepository.getById(UUID.fromString(userId));
 		if(user != null) {
@@ -80,6 +96,12 @@ public class UserService {
 			case ADMIN:
 				Admin admin = adminRepository.getById(user.getId());
 				return admin;
+			case COACH:
+				Coach coach = coachRepository.getById(user.getId());
+				return coach;
+			case MANAGER: 
+				Manager manager = managerRepository.getById(user.getId());
+				return manager;
 			default:
 				return null;
 			}
@@ -99,6 +121,14 @@ public class UserService {
 				Admin admin = adminRepository.getById(user.getId());
 				admin.updateUserInfo(userInfoDTO);
 				return adminRepository.update(admin);
+			case COACH:
+				Coach coach = coachRepository.getById(user.getId());
+				coach.updateUserInfo(userInfoDTO);
+				return coachRepository.update(coach);
+			case MANAGER:
+				Manager manager = managerRepository.getById(user.getId());
+				manager.updateUserInfo(userInfoDTO);
+				return managerRepository.update(manager);
 			default:
 				return null;
 			}
@@ -120,6 +150,14 @@ public class UserService {
 				Admin admin = adminRepository.getById(user.getId());
 				admin.setUsername(username);
 				return adminRepository.update(admin);
+			case COACH:
+				Coach coach = coachRepository.getById(user.getId());
+				coach.setUsername(username);
+				return coachRepository.update(coach);
+			case MANAGER:
+				Manager manager = managerRepository.getById(user.getId());
+				manager.setUsername(username);
+				return managerRepository.update(manager);
 			default:
 				return null;
 			}

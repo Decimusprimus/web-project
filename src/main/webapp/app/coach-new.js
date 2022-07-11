@@ -1,4 +1,4 @@
-Vue.component("register-customer", {
+Vue.component("register-coach", {
     data: function() {
         return {
             username: '',
@@ -23,7 +23,7 @@ Vue.component("register-customer", {
     template: `
     <div class="container" style="margin-top: 50px; width: 40%">
         <div v-if="!success">
-            <h2>Create an account</h2>
+            <h2>Register new coach</h2>
             <form  style="margin-top: 50px; margin-bottom: 100px">
                 <div class="form-group">
                     <label for="usernameRegister">Username</label>
@@ -70,9 +70,9 @@ Vue.component("register-customer", {
         <div v-else>
             <div class="alert alert-success" role="alert">
                 <h5>Successful registration</h5>
-                <p>You successfully registered, now proceed to login</p>
+                <p>New coach successfully registered</p>
                 </br>
-                <a href="#/login" >Login</a>
+                <a href="#/" >Home</a>
             </div>
         </div>
     </div>
@@ -182,7 +182,7 @@ Vue.component("register-customer", {
                     gender: this.gender.toUpperCase()
                 }
                 
-                axios.post('/user/register/customer', JSON.stringify(registerDTO))
+                axios.post('/user/register/coach', JSON.stringify(registerDTO))
                 .then(res => {
                     console.log(res.data);
                     this.success = true;

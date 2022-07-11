@@ -1,0 +1,12 @@
+[
+  {
+    "id": "e70278a6-3977-4aa9-af8f-47bf62b5679c",
+    "username": "coach",
+    "firstName": "Petar",
+    "lastName": "Petrovic",
+    "dateOfBirth": "1994-02-09",
+    "userRole": "COACH",
+    "gender": "MALE",
+    "deleted": false
+  }
+]

@@ -18,6 +18,7 @@ import dto.LoginDTO;
 import dto.RegisterCustomerDTO;
 import dto.UserId;
 import dto.UserInfoDTO;
+import model.Coach;
 import model.Customer;
 import model.Manager;
 import model.User;
@@ -82,6 +83,22 @@ public class UsersController {
 				Manager manager = userService.createNewManager(registerDTO);
 				response.type("application/json");
 				return gson.toJson(manager);
+			}
+		}
+		response.status(403);
+		return "";
+	};
+	
+	public static Route RegisterCoach = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID id = sesion.attribute("user");
+		User user = userService.GetUser(id);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.ADMIN) {
+				RegisterCustomerDTO registerDTO = gson.fromJson(request.body(), RegisterCustomerDTO.class);
+				Coach coach = userService.createNewCoach(registerDTO);
+				response.type("application/json");
+				return gson.toJson(coach);
 			}
 		}
 		response.status(403);

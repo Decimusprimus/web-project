@@ -40,5 +40,19 @@
     "password": "1234",
     "userRole": "MANAGER",
     "deleted": false
+  },
+  {
+    "id": "af187914-a2f2-4eb6-97b9-f33f3757c8f2",
+    "username": "",
+    "password": "",
+    "userRole": "MANAGER",
+    "deleted": false
+  },
+  {
+    "id": "e70278a6-3977-4aa9-af8f-47bf62b5679c",
+    "username": "coach",
+    "password": "1234",
+    "userRole": "COACH",
+    "deleted": false
   }
 ]

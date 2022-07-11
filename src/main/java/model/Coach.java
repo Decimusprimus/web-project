@@ -17,5 +17,4 @@ public class Coach extends UserInfo{
 	}
 	
 	
-	
 }

@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import repositories.AdminRepository;
+import repositories.CoachRepository;
 import repositories.CustomerRepository;
 import repositories.FacilityRepository;
 import repositories.ManagerRepository;
@@ -36,6 +37,7 @@ public class SparkAppMain {
 	public static CustomerRepository customerRepository;
 	public static AdminRepository adminRepository;
 	public static ManagerRepository managerRepository;
+	public static CoachRepository coachRepository;
 	public static FacilityRepository facilityRepository;
 	
 	public static UserService userService;
@@ -55,9 +57,10 @@ public class SparkAppMain {
 		customerRepository = new CustomerRepository("./data/users/customer.json");
 		adminRepository = new AdminRepository("./data/users/admins.json");
 		managerRepository = new ManagerRepository("./data/users/managers.json");
+		coachRepository = new CoachRepository("./data/users/coach.json");
 		facilityRepository = new FacilityRepository("./data/facilities/facilities.json");
 		
-		userService = new UserService(userRepository, customerRepository, adminRepository, managerRepository);
+		userService = new UserService(userRepository, customerRepository, adminRepository, managerRepository, coachRepository);
 		faciltyService = new FaciltiyService(facilityRepository);
 		
 		port(8080);
@@ -68,6 +71,7 @@ public class SparkAppMain {
 		post("/user/logout", UsersController.HandleLogout);
 		post("/user/register/customer", UsersController.RegisterCustomer);
 		post("/user/register/manager", UsersController.RegisterManager);
+		post("/user/register/coach", UsersController.RegisterCoach);
 		get("/user/:id", UsersController.GetUserInfo);
 		put("/user/:id", UsersController.UpdateUserInfo);
 		post("/user/:id/username", UsersController.UpdateUsername);
