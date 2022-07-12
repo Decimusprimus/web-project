@@ -18,11 +18,14 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#/">Home</a>
 				</li>
-				<li class="nav-item" style="width: max-content;" v-if="userRole === 'ADMIN'">
+				<li class="nav-item" style="width: max-content;" v-if="isAdmin">
 					<a class="nav-link navbar-nav" href="#/facility/new">Create new Facility</a>
 				</li>
-				<li class="nav-item" style="width: max-content;" v-if="userRole === 'ADMIN'">
+				<li class="nav-item" style="width: max-content;" v-if="isAdmin">
 					<a class="nav-link navbar-nav" href="#/coach/register">Register new coach</a>
+				</li>
+				<li class="nav-item" style="width: max-content;" v-if="isManager">
+					<a class="nav-link navbar-nav" href="#/manager/facility">My facility</a>
 				</li>
 			</ul>
 			<span></span>
@@ -69,6 +72,8 @@
 		<script src="app/register-manager-modal.js"></script>
 		<script src="app/facility.js"></script>
 		<script src="app/coach-new.js"></script>
+		<script src="app/manager-facility.js"></script>
+		<script src="app/facility-content-modal.js"></script>
 		<script src="app/app.js"></script>
 	</body>
 </html>

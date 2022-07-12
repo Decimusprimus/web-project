@@ -63,6 +63,16 @@ public class FacilityRepository extends Repository<Facility, UUID> {
 		return result;
 	}
 	
+	public Facility getFacilityForManagerId(UUID id) {
+		ArrayList<Facility> collection = (ArrayList<Facility>) getAll();
+		for(Facility f : collection) {
+			if(f.getManagerId().equals(id) && !f.isDeleted()) {
+				return f;
+			}
+		}
+		return null;
+	}
+	
 	
 
 

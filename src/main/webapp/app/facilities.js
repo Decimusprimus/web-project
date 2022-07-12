@@ -56,12 +56,48 @@ methods: {
         .then(res => {
             this.facilities = res.data;
         })
-    }
+    },
+    
+    checkIsOpen: function(facility) {
+        var today = new Date(); 
+        var i = today.getDay()-1;
+        if(i == -1) {
+            i = 6;
+        }
+        var workHour = facility.workingHours[i];
+        var from = workHour.from.split(":");
+        var to = workHour.to.split(":");
+        var fromDate = new Date();
+        if(from[0] === '--' || from[1] === '--' || to[0] === '--' || to[1] === '--') {
+            return false;
+        }
+
+        fromDate.setHours(parseInt(from[0]), parseInt(from[1]));
+        var toDate = new Date();
+        toDate.setHours(parseInt(to[0]), parseInt(to[1]));
+        var isOpen = false;
+        if(fromDate.getTime() === toDate.getTime()) {
+            isOpen = true;
+        } else if(fromDate.getTime() <= today.getTime() && toDate.getTime() >= today.getTime() ) {
+            isOpen = true;
+        } else {
+            isOpen = false;
+        }
+        return isOpen;
+    },
 },
 mounted() {
     axios.get('/facilities')
     .then(res => {
         this.facilities = res.data;
+        this.facilities.sort((a, b) => {
+            if(this.checkIsOpen(a) && !this.checkIsOpen(b)) {
+                return -1;
+            } else if(this.checkIsOpen(a) && this.checkIsOpen(b)) {
+                return 0;
+            }
+            return 1;
+        })
     })
 },
 });

@@ -16,10 +16,12 @@ data: function() {
         },
         image: '',
         isOpen: true,
+        isManagerFacility: false,
+        trainings: [],
     }
 },
 template: `
-    <div class="container">
+    <div class="container" style="margin-bottom: 150px;">
         <div class="facility-header">
             <img class="facility-header-img" v-bind:src="image" >
             <div class="container" style="align-self: center">
@@ -52,6 +54,16 @@ template: `
                 </div>
             </div>
         </div>
+        <div class="container" style="margin-top: 20px;">
+            <div class="flex-content-row" style="justify-content: space-between;">
+                <h4>Content</h4>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#facilityContentModal" v-if="isManagerFacility">Add new content</button>
+                <facility-content-modal id="facilityContentModal" v-if="isManagerFacility" v-on:newTraining="newTraining"></facility-content-modal>
+            </div>
+            <hr/>
+            <div>
+            </div>
+        </div>
     </div>
 `,
 methods: {
@@ -64,6 +76,10 @@ methods: {
         var workHour = this.facility.workingHours[i];
         var from = workHour.from.split(":");
         var to = workHour.to.split(":");
+        if(from[0] === '--' || from[1] === '--' || to[0] === '--' || to[1] === '--') {
+            this.isOpen = false;
+            return
+        }
         var fromDate = new Date();
         fromDate.setHours(parseInt(from[0]), parseInt(from[1]));
         var toDate = new Date();
@@ -79,7 +95,19 @@ methods: {
     getType: function() {
         var ret = this.facility.facilityType.replace("_", " ");
         return ret;
-    }
+    },
+    checkManager: function(id) {
+        var userId = window.localStorage.getItem('user');
+        if(userId === id) {
+            this.isManagerFacility = true;
+        } else {
+            this.isManagerFacility = false;
+        }
+    },
+    newTraining: function(t) {
+        this.trainings.push(t);
+        console.log(this.trainings);
+    },
 },
 mounted() {
     const id = this.$route.params.id;
@@ -89,6 +117,12 @@ mounted() {
         .then(res =>{
             this.facility = res.data;
             this.checkIsOpen();
+            this.checkManager(res.data.managerId)
+        })
+
+        axios.get('/training/facility/'+id)
+        .then(res => {
+            this.trainings = res.data;
         })
     }
 },

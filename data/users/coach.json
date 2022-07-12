@@ -8,5 +8,15 @@
     "userRole": "COACH",
     "gender": "MALE",
     "deleted": false
+  },
+  {
+    "id": "cfa212b7-0293-4aa1-bcd2-e5a8cf97a46f",
+    "username": "ramila",
+    "firstName": "Ramil",
+    "lastName": "James",
+    "dateOfBirth": "1993-09-20",
+    "userRole": "COACH",
+    "gender": "FEMALE",
+    "deleted": false
   }
 ]

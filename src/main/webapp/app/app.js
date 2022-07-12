@@ -6,7 +6,8 @@ const Facilities = { template: '<facilities></facilities>' }
 const Profile = { template: '<profile></profile>' }
 const FacilityNew = { template: '<facility-new></facility-new>' }
 const Facility = { template: '<facility></facility>' }
-const RegisterCoach = {template: '<register-coach></register-coach>' } 
+const RegisterCoach = { template: '<register-coach></register-coach>' } 
+const ManagerFacility = { template: '<manager-facility></manager-facility>'}
 
 const router = new VueRouter({
 	mode: 'hash',
@@ -18,6 +19,7 @@ const router = new VueRouter({
 		{ path: '/facility/new', component: FacilityNew },
 		{ path: '/facility/:id', component: Facility },
 		{ path: '/coach/register', component: RegisterCoach },
+		{ path: '/manager/facility', component: ManagerFacility },
 	]
 })
 
@@ -29,6 +31,8 @@ var app = new Vue({
 		user : String,
 		userRole : '',
 		username : '',
+		isAdmin: false,
+		isManager: false,
 	},
 
 	mounted() {
@@ -44,6 +48,17 @@ var app = new Vue({
 				this.user = window.localStorage.getItem('user');
 				this.username = window.localStorage.getItem('username');
 				this.userRole = window.localStorage.getItem('userRole');
+				if(this.userRole === 'ADMIN') {
+					this.isAdmin = true;
+					this.isManager = false;
+				} else if(this.userRole === 'MANAGER') {
+					this.isAdmin = false;
+					this.isManager = true;
+				} else {
+					this.isAdmin = false;
+					this.isManager = false;
+				}
+				 
 				var userId = {
 					id: this.user
 				}
@@ -67,7 +82,9 @@ var app = new Vue({
 				window.localStorage.removeItem('userRole');
 				window.localStorage.removeItem('username');
 				this.isLoggedIn = false;
-				this.$router.go(0);
+				this.isAdmin = false;
+				this.isManager = false;
+				this.$router.push('/');
 			})
 		},
 

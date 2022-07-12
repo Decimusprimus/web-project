@@ -1,0 +1,22 @@
+[
+  {
+    "id": "b9dfc63d-1b19-49c9-80dd-fd4879c5e17a",
+    "name": "relaxing masage",
+    "trainingType": "MASSAGE",
+    "duration": 30,
+    "description": "safasfd",
+    "deleted": false,
+    "facilityId": "d7826faa-a101-4a9b-8a98-586916a872b8",
+    "coachId": null
+  },
+  {
+    "id": "2204d36e-96ba-409a-a4a6-354d0bb4c867",
+    "name": "relaxing masages",
+    "trainingType": "MASSAGE",
+    "duration": 30,
+    "description": "safasfd",
+    "deleted": false,
+    "facilityId": "d7826faa-a101-4a9b-8a98-586916a872b8",
+    "coachId": null
+  }
+]

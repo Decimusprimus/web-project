@@ -54,5 +54,12 @@
     "password": "1234",
     "userRole": "COACH",
     "deleted": false
+  },
+  {
+    "id": "cfa212b7-0293-4aa1-bcd2-e5a8cf97a46f",
+    "username": "ramila",
+    "password": "1234",
+    "userRole": "COACH",
+    "deleted": false
   }
 ]

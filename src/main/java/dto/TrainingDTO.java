@@ -1,23 +1,20 @@
-package model;
+package dto;
 
-import java.time.LocalTime;
 import java.util.UUID;
 
-public class Training implements IIdentifiable<UUID> {
-	private UUID id;
+import model.TrainingType;
+
+public class TrainingDTO {
 	private String name;
 	private TrainingType trainingType; 
 	private int duration;
 	private String description;
-	private boolean deleted;
-	
 	private UUID facilityId;
 	private UUID coachId;
-	
-	public Training(UUID id, String name, TrainingType trainingType, int duration, String description, UUID facilityId,
+
+	public TrainingDTO(String name, TrainingType trainingType, int duration, String description, UUID facilityId,
 			UUID coachId) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.trainingType = trainingType;
 		this.duration = duration;
@@ -25,34 +22,9 @@ public class Training implements IIdentifiable<UUID> {
 		this.facilityId = facilityId;
 		this.coachId = coachId;
 	}
-	
-	public Training(UUID id, String name, TrainingType trainingType, int duration, String description, boolean deleted,
-			UUID facilityId, UUID coachId) {
+
+	public TrainingDTO() {
 		super();
-		this.id = id;
-		this.name = name;
-		this.trainingType = trainingType;
-		this.duration = duration;
-		this.description = description;
-		this.deleted = deleted;
-		this.facilityId = facilityId;
-		this.coachId = coachId;
-	}
-
-
-
-	public Training() {
-		super();
-	}
-	
-	@Override
-	public UUID getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(UUID id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -102,15 +74,8 @@ public class Training implements IIdentifiable<UUID> {
 	public void setCoachId(UUID coachId) {
 		this.coachId = coachId;
 	}
-
-	@Override
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;		
-	}
-
-	@Override
-	public boolean isDeleted() {
-		return this.deleted;
-	}
+	
+	
+	
 	
 }

@@ -31,7 +31,6 @@ import model.User;
 import model.UserRole;
 
 public class FacilityController {
-	private static Gson gson = new Gson();
 	
 	public static Route GetAll = (Request request, Response response) -> {
 		ArrayList<Facility> collection = faciltyService.getAll(); 
@@ -109,6 +108,23 @@ public class FacilityController {
 		if(facility != null) {
 			response.type("application/json");
 			return gson.toJson(facility);
+		}
+		response.status(400);
+		return "";
+	};
+	
+	public static Route GetFacilityForManager = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID id = sesion.attribute("user");
+		User user = userService.GetUser(id);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.MANAGER) {
+				Facility facility = faciltyService.getFacilityForManagerId(id);
+				if(facility != null) {
+					response.type("application/json");
+					return gson.toJson(facility);
+				}
+			}
 		}
 		response.status(400);
 		return "";

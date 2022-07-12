@@ -58,5 +58,9 @@ public class FaciltiyService {
 		userService.assignManagerToFacility(dto.getManagerId(), facility.getId());
 		return facility;
 	}
+	
+	public Facility getFacilityForManagerId(UUID id) {
+		return facilityRepository.getFacilityForManagerId(id);
+	}
 
 }

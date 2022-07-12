@@ -189,5 +189,9 @@ public class UserService {
 		manager.setFacilityId(faciilityId);
 		managerRepository.update(manager);
 	}
+	
+	public ArrayList<Coach> getAllCoaches() {
+		return (ArrayList<Coach>) coachRepository.getAllActive();
+	}
 
 }

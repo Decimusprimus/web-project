@@ -11,7 +11,6 @@ import java.util.UUID;
 
 import static app.SparkAppMain.gson;
 
-import com.google.gson.Gson;
 
 import dto.ChangePasswordDTO;
 import dto.LoginDTO;
@@ -155,4 +154,10 @@ public class UsersController {
 		response.type("application/json");
 		return gson.toJson(userService.GetAllFreeManagers());
 	};
+	
+	public static Route GetCoaches = (Request request, Response response) -> {
+		response.type("application/json");
+		return gson.toJson(userService.getAllCoaches());
+	};
+	
 }

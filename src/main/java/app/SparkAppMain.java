@@ -13,10 +13,13 @@ import repositories.CoachRepository;
 import repositories.CustomerRepository;
 import repositories.FacilityRepository;
 import repositories.ManagerRepository;
+import repositories.TrainingRepository;
 import repositories.UserRepository;
 import services.FaciltiyService;
+import services.TrainingService;
 import services.UserService;
 import controllers.FacilityController;
+import controllers.TrainingController;
 import controllers.UsersController;
 
 import static spark.Spark.port;
@@ -39,9 +42,11 @@ public class SparkAppMain {
 	public static ManagerRepository managerRepository;
 	public static CoachRepository coachRepository;
 	public static FacilityRepository facilityRepository;
+	public static TrainingRepository trainingRepository;
 	
 	public static UserService userService;
 	public static FaciltiyService faciltyService;
+	public static TrainingService trainingService;
 	
 
 	public static void main(String[] args) throws IOException {
@@ -59,9 +64,11 @@ public class SparkAppMain {
 		managerRepository = new ManagerRepository("./data/users/managers.json");
 		coachRepository = new CoachRepository("./data/users/coach.json");
 		facilityRepository = new FacilityRepository("./data/facilities/facilities.json");
+		trainingRepository = new TrainingRepository("./data/trainings/trainings.json");
 		
 		userService = new UserService(userRepository, customerRepository, adminRepository, managerRepository, coachRepository);
 		faciltyService = new FaciltiyService(facilityRepository);
+		trainingService = new TrainingService(trainingRepository);
 		
 		port(8080);
 		staticFiles.externalLocation(new File("src/main/webapp").getCanonicalPath());
@@ -78,6 +85,7 @@ public class SparkAppMain {
 		post("/user/:id/password", UsersController.ChangePassword);
 		
 		get("/users/manager/free", UsersController.GetFreeManagers);
+		get("/users/coaches", UsersController.GetCoaches);
 		
 		get("/facilities", FacilityController.GetAll);
 		get("/facilities/:id", FacilityController.GetFacilityById);
@@ -85,8 +93,12 @@ public class SparkAppMain {
 		get("/facilities/search", FacilityController.SearchFacilities);
 		post("/facilities/new", FacilityController.CreateNewFacility);
 		post("/facilities/:id/logo", FacilityController.UploadLogoImage);
+		get("/facilities/manager/my", FacilityController.GetFacilityForManager);
 		
-		
+		get("/training/facility/:id", TrainingController.GetTraingsForFacility);
+		post("/training/facility", TrainingController.CreateNewTraining);
+		post("/training/:id/image", TrainingController.UploadTrainingImage);
+		get("/training/:id/image", TrainingController.GetTrainingImage);
 	}
 
 }
