@@ -11,13 +11,16 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.servlet.MultipartConfigElement;
 
 import dto.TrainingDTO;
+import dto.TrainingHistoryDTO;
 import model.Facility;
 import model.Training;
+import model.TrainingHistory;
 import model.User;
 import model.UserRole;
 
@@ -126,6 +129,69 @@ public class TrainingController {
 			if(user.getUserRole() == UserRole.COACH) {
 				response.type("application/json");
 				return gson.toJson(trainingService.getAllForCoach(user.getId()));
+			}
+		}
+		response.status(403);
+		return "";
+	};
+	
+	public static Route TrainingCheckIn = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID userId = sesion.attribute("user");
+		User user = userService.GetUser(userId);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.CUSTOMER) {
+				TrainingHistoryDTO dto = gson.fromJson(request.body(), TrainingHistoryDTO.class);
+				TrainingHistory th = trainingService.checkIn(dto, userId);
+				if(th != null) {
+					response.type("application/json");
+					return gson.toJson(th);
+				}
+				response.status(400);
+				return "";
+			}
+		}
+		response.status(403);
+		return "";
+	};
+	
+	public static Route CanCheckIn = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID userId = sesion.attribute("user");
+		User user = userService.GetUser(userId);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.CUSTOMER) {
+				if(trainingService.canCheckIn(userId)) {
+					return "";
+				}
+				response.status(400);
+				return "";
+			}
+		}
+		response.status(403);
+		return "";
+	};
+	
+	public static Route GetTraining = (Request request, Response response) -> {
+		String id = request.params(":id");
+		Training t = trainingService.getById(UUID.fromString(id));
+		if(t != null) {
+			response.type("application/json");
+			return gson.toJson(t);
+		}
+		response.status(400);
+		return "";
+	};
+	
+	public static Route GetTrainingHistory = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID userId = sesion.attribute("user");
+		User user = userService.GetUser(userId);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.CUSTOMER) {
+				ArrayList<TrainingHistory> collection = trainingService.getTrainingHistory(userId);
+				response.type("application/json");
+				return gson.toJson(collection);
 			}
 		}
 		response.status(403);

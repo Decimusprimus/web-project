@@ -5,6 +5,7 @@ Vue.component("facility-content-card", {
         coach: [],
         isManager: false,
         isCustomer: false,
+        canCheckIn: false,
     }
 },
 props: ['content', 'isMy'],
@@ -22,6 +23,7 @@ template: `
             </div>
             <div class="f-cnt-price"  style="margin-left: 20px;">
                 <button class="btn btn-primary" v-if="isManager" style="height: 40px;" data-toggle="modal" data-target="#facilityContentEdit">Edit</button>
+                <button class="btn btn-primary" v-if="isCustomer" v-bind:disabled="!canCheckIn" v-on:click="checkIn">Check in</button>
             </div>
         </div>
         <facility-content-edit id="facilityContentEdit" v-bind:content="content" v-bind:key="content.id"></facility-content-edit>
@@ -42,6 +44,16 @@ methods: {
                 this.isManager = false;
             }
         }
+    },
+    checkIn: function() {
+        var dto = {
+            trainingId: this.content.id,
+            coachId: this.content.coachId,
+        }
+        axios.post('/training/checkin', JSON.stringify(dto))
+        .then(res => {
+            window.alert('Checked in :   ^)');
+        })
     }
 },
 mounted() {
@@ -51,7 +63,14 @@ mounted() {
         axios.get('/user/'+this.content.coachId)
         .then(res => {
                 this.coach = res.data;
+                this.$route.go();
         }) 
+    }
+    if(this.isCustomer) {
+        axios.get('/training/can/checkin')
+        .then(res => {
+            this.canCheckIn = true
+        })
     }
 },
 });

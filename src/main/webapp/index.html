@@ -33,6 +33,9 @@
 				<li class="nav-item" style="width: max-content;" v-if="isCoach">
 					<a class="nav-link navbar-nav" href="#/coach/training">My trainings</a>
 				</li>
+				<li class="nav-item" style="width: max-content;" v-if="isCustomer">
+					<a class="nav-link navbar-nav" href="#/customer/training/history">Training history</a>
+				</li>
 			</ul>
 			<span></span>
 			<div class="nav-profile" v-if="!isLoggedIn">
@@ -85,6 +88,8 @@
 		<script src="app/membership.js"></script>
 		<script src="app/coach-trainings.js"></script>
 		<script src="app/coach-training-card.js"></script>
+		<script src="app/cutomer-training-history.js"></script>
+		<script src="app/customer-training-card.js"></script>
 		<script src="app/app.js"></script>
 	</body>
 </html>

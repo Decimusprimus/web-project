@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "ec84fa96-1538-49d0-9e1e-50674c3d851d",
+    "membershipType": "MONTH",
+    "dateOfPayment": "2022-07-12",
+    "validUntil": "2022-08-12",
+    "price": 2600.0,
+    "status": true,
+    "counter": 11,
+    "deleted": false,
+    "customerId": "e3bbaeeb-eaf0-4d44-93e7-d08fedc11838"
+  }
+]

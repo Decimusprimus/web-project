@@ -14,6 +14,7 @@ import repositories.CustomerRepository;
 import repositories.FacilityRepository;
 import repositories.ManagerRepository;
 import repositories.MembershipRepositroy;
+import repositories.TrainingHistoryRepository;
 import repositories.TrainingRepository;
 import repositories.UserRepository;
 import services.FaciltiyService;
@@ -46,6 +47,7 @@ public class SparkAppMain {
 	public static CoachRepository coachRepository;
 	public static FacilityRepository facilityRepository;
 	public static TrainingRepository trainingRepository;
+	public static TrainingHistoryRepository trainingHistoryRepository;
 	public static MembershipRepositroy membershipRepository;
 	
 	public static UserService userService;
@@ -70,11 +72,12 @@ public class SparkAppMain {
 		coachRepository = new CoachRepository("./data/users/coach.json");
 		facilityRepository = new FacilityRepository("./data/facilities/facilities.json");
 		trainingRepository = new TrainingRepository("./data/trainings/trainings.json");
+		trainingHistoryRepository = new TrainingHistoryRepository("./data/trainings/trainings-history.json");
 		membershipRepository = new MembershipRepositroy("./data/memberships/memeberships.json");
 		
 		userService = new UserService(userRepository, customerRepository, adminRepository, managerRepository, coachRepository);
 		faciltyService = new FaciltiyService(facilityRepository);
-		trainingService = new TrainingService(trainingRepository);
+		trainingService = new TrainingService(trainingRepository, trainingHistoryRepository, membershipRepository);
 		membershipService = new MembershipService(membershipRepository);
 		
 		port(8080);
@@ -108,6 +111,11 @@ public class SparkAppMain {
 		post("/training/:id/image", TrainingController.UploadTrainingImage);
 		get("/training/:id/image", TrainingController.GetTrainingImage);
 		put("/training/:id", TrainingController.UpdateTraining);
+		post("/training/checkin", TrainingController.TrainingCheckIn);
+		get("/training/can/checkin", TrainingController.CanCheckIn);
+		get("/training/:id", TrainingController.GetTraining);
+		get("/training/customer/history", TrainingController.GetTrainingHistory);
+		
 		
 		
 		post("/membership/:option", MembershipController.CreateMembership);

@@ -10,6 +10,7 @@ const RegisterCoach = { template: '<register-coach></register-coach>' }
 const ManagerFacility = { template: '<manager-facility></manager-facility>' }
 const Membership = { template: '<membership></membership>' }
 const CoachTraining = { template: '<coach-training></coach-training>' }
+const CustomerTrainingHistory = { template: '<customer-training-history></customer-training-history>' }
 
 
 const router = new VueRouter({
@@ -25,6 +26,7 @@ const router = new VueRouter({
 		{ path: '/manager/facility', component: ManagerFacility },
 		{ path: '/membership', component: Membership },
 		{ path: '/coach/training', component: CoachTraining },
+		{ path: '/customer/training/history', component: CustomerTrainingHistory },
 	]
 })
 
@@ -108,6 +110,7 @@ var app = new Vue({
 				this.isAdmin = false;
 				this.isManager = false;
 				this.$router.push('/');
+				this.$router.go();
 			})
 		},
 

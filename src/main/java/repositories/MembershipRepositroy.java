@@ -56,5 +56,18 @@ public class MembershipRepositroy extends Repository<Membership, UUID> {
 			return membership;
 		}
 	}
+	
+	public Membership checkForMembership(UUID id) {
+		ArrayList<Membership> collection = (ArrayList<Membership>) getAll();
+		for(Membership m : collection) {
+			if(m.getCustomerId().equals(id)) {
+				if(m.isStatus() && m.getValidUntil().compareTo(LocalDate.now()) > 0 && m.getCounter() > 0) {
+					return m;
+				}
+			}
+		}
+		return null;
+	}
+	
 
 }
