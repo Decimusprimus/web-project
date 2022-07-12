@@ -5,6 +5,7 @@ Vue.component("facility-content-modal", {
         type: '',
         description: '',
         duration: '',
+        price: '',
         filePreview: null,
         coaches: [],
         enableCoach: false,
@@ -66,6 +67,10 @@ template: `
                     <label for="durationContent">Duration</label>
                     <small class="text-muted">in minutes</small>
                     <input type="number" class="form-control" id="durationContent" v-model="duration" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="priceContent">Price</label>
+                    <input type="number" class="form-control" id="priceContent" v-model="price" min="0">
                 </div>
             </form>
         </div>
@@ -145,6 +150,7 @@ methods: {
                     trainingType: t,
                     duration: this.duration,
                     description: this.description,
+                    price: this.price,
                     facilityId: id
                 }
             } else {
@@ -153,6 +159,7 @@ methods: {
                     trainingType: t,
                     duration: this.duration,
                     description: this.description,
+                    price: this.price,
                     facilityId: id,
                     coachId: this.coach.id
                 }

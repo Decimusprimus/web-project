@@ -103,10 +103,12 @@ public class SparkAppMain {
 		get("/facilities/manager/my", FacilityController.GetFacilityForManager);
 		
 		get("/training/facility/:id", TrainingController.GetTraingsForFacility);
+		get("/training/coach/my", TrainingController.GetTrainingForCoach);
 		post("/training/facility", TrainingController.CreateNewTraining);
 		post("/training/:id/image", TrainingController.UploadTrainingImage);
 		get("/training/:id/image", TrainingController.GetTrainingImage);
 		put("/training/:id", TrainingController.UpdateTraining);
+		
 		
 		post("/membership/:option", MembershipController.CreateMembership);
 	}

@@ -7,8 +7,10 @@ const Profile = { template: '<profile></profile>' }
 const FacilityNew = { template: '<facility-new></facility-new>' }
 const Facility = { template: '<facility></facility>' }
 const RegisterCoach = { template: '<register-coach></register-coach>' } 
-const ManagerFacility = { template: '<manager-facility></manager-facility>'}
-const Membership = { template: '<membership></membership>'}
+const ManagerFacility = { template: '<manager-facility></manager-facility>' }
+const Membership = { template: '<membership></membership>' }
+const CoachTraining = { template: '<coach-training></coach-training>' }
+
 
 const router = new VueRouter({
 	mode: 'hash',
@@ -22,6 +24,7 @@ const router = new VueRouter({
 		{ path: '/coach/register', component: RegisterCoach },
 		{ path: '/manager/facility', component: ManagerFacility },
 		{ path: '/membership', component: Membership },
+		{ path: '/coach/training', component: CoachTraining },
 	]
 })
 
@@ -36,6 +39,7 @@ var app = new Vue({
 		isAdmin: false,
 		isManager: false,
 		isCustomer: false,
+		isCoach: false,
 	},
 
 	mounted() {
@@ -55,18 +59,27 @@ var app = new Vue({
 					this.isAdmin = true;
 					this.isManager = false;
 					this.isCustomer = false;
+					this.isCoach = false;
 				} else if(this.userRole === 'MANAGER') {
 					this.isAdmin = false;
 					this.isManager = true;
 					this.isCustomer = false;
+					this.isCoach = false;
 				} else if(this.userRole === 'CUSTOMER') {
 					this.isAdmin = false;
 					this.isManager = false;
 					this.isCustomer = true;
+					this.isCoach = false;
+				} else if(this.userRole === 'COACH') {
+					this.isAdmin = false;
+					this.isManager = false;
+					this.isCustomer = false;
+					this.isCoach = true;
 				} else {
 					this.isAdmin = false;
 					this.isManager = false;
 					this.isCustomer = false;
+					this.isCoach = false;
 				}
 				 
 				var userId = {

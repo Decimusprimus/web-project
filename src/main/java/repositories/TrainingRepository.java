@@ -61,6 +61,19 @@ public class TrainingRepository extends Repository<Training, UUID> {
 		return entity;
 	}
 	
+	public ArrayList<Training> getForCoach(UUID id) {
+		ArrayList<Training> collection = (ArrayList<Training>) getAll();
+		ArrayList<Training> retCollection = new ArrayList<Training>(); 
+		for(Training t : collection) {
+			if(t.getCoachId() != null) {
+				if(t.getCoachId().equals(id)) {
+					retCollection.add(t);
+				}
+			}
+		}
+		return retCollection;
+	}
+	
 	
 
 }

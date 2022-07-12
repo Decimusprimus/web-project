@@ -1,21 +1,19 @@
-Vue.component("facility-content-card", {
+Vue.component("coach-training-card", {
     data: function() {
     return {
         image: '',
         coach: [],
-        isManager: false,
-        isCustomer: false,
+        facility: [],
     }
 },
-props: ['content', 'isMy'],
+props: ['content'],
 template: `
     <div>
         <div class="f-cnt-container">
             <img v-bind:src="image">
             <div class="f-cnt-grid" style="width: 100%; justify-content: center; align-content: center; margin-right: 20px; margin-left: 20px">
                 <h6>{{content.name}}</h6>
-                <h6>{{content.description}}</h6>
-                <h6>{{coach.firstName}} {{coach.lastName}}</h6>
+                <h6>{{facility.name}}</h6>
             </div>
             <div class="f-cnt-price" >
                 <h6 v-if="content.price">{{content.price}}</h6>
@@ -30,28 +28,20 @@ template: `
     
 `,
 methods: {
-    checkUserRole: function() {
-        var role = window.localStorage.getItem('userRole');
-        var id = window.localStorage.getItem('user');
-        if(role){
-            if(role === 'MANAGER' && this.isMy){
-                this.isManager = true;
-                this.isCustomer = false;
-            } else if(role === 'CUSTOMER') {
-                this.isCustomer = true;
-                this.isManager = false;
-            }
-        }
-    }
 },
 mounted() {
     this.image = '/training/'+this.content.id+'/image';
-    this.checkUserRole();
     if(this.content.coachId){
         axios.get('/user/'+this.content.coachId)
         .then(res => {
                 this.coach = res.data;
         }) 
     }
+    axios.get('/facilities/'+this.content.facilityId)
+    .then(res => {
+        this.facility = res.data;
+    }
+        
+    )
 },
 });

@@ -9,16 +9,18 @@ public class TrainingDTO {
 	private TrainingType trainingType; 
 	private int duration;
 	private String description;
+	private double price;
 	private UUID facilityId;
 	private UUID coachId;
 
-	public TrainingDTO(String name, TrainingType trainingType, int duration, String description, UUID facilityId,
-			UUID coachId) {
+	public TrainingDTO(String name, TrainingType trainingType, int duration, String description, double price,
+			UUID facilityId, UUID coachId) {
 		super();
 		this.name = name;
 		this.trainingType = trainingType;
 		this.duration = duration;
 		this.description = description;
+		this.price = price;
 		this.facilityId = facilityId;
 		this.coachId = coachId;
 	}
@@ -73,6 +75,14 @@ public class TrainingDTO {
 
 	public void setCoachId(UUID coachId) {
 		this.coachId = coachId;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 	

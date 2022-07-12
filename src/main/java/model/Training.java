@@ -9,6 +9,7 @@ public class Training implements IIdentifiable<UUID> {
 	private TrainingType trainingType; 
 	private int duration;
 	private String description;
+	private double price;
 	private boolean deleted;
 	
 	private UUID facilityId;
@@ -38,8 +39,20 @@ public class Training implements IIdentifiable<UUID> {
 		this.facilityId = facilityId;
 		this.coachId = coachId;
 	}
-
-
+	
+	public Training(UUID id, String name, TrainingType trainingType, int duration, String description, double price,
+			boolean deleted, UUID facilityId, UUID coachId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.trainingType = trainingType;
+		this.duration = duration;
+		this.description = description;
+		this.price = price;
+		this.deleted = deleted;
+		this.facilityId = facilityId;
+		this.coachId = coachId;
+	}
 
 	public Training() {
 		super();
@@ -112,5 +125,15 @@ public class Training implements IIdentifiable<UUID> {
 	public boolean isDeleted() {
 		return this.deleted;
 	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	
 	
 }

@@ -117,5 +117,19 @@ public class TrainingController {
 		response.status(403);
 		return "";
 	};
+	
+	public static Route GetTrainingForCoach = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID userId = sesion.attribute("user");
+		User user = userService.GetUser(userId);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.COACH) {
+				response.type("application/json");
+				return gson.toJson(trainingService.getAllForCoach(user.getId()));
+			}
+		}
+		response.status(403);
+		return "";
+	};
 
 }

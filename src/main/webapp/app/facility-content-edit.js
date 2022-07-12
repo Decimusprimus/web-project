@@ -5,6 +5,7 @@ Vue.component("facility-content-edit", {
         type: '',
         description: '',
         duration: '',
+        price: '',
         filePreview: null,
         coaches: [],
         enableCoach: false,
@@ -59,6 +60,10 @@ template: `
                     <label for="durationContentEdit">Duration</label>
                     <small class="text-muted">in minutes</small>
                     <input type="number" class="form-control" id="durationContentEdit" v-model="duration" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="priceContent">Price</label>
+                    <input type="number" class="form-control" id="priceContent" v-model="price" min="0">
                 </div>
             </form>
         </div>
@@ -136,6 +141,7 @@ methods: {
                     trainingType: t,
                     duration: this.duration,
                     description: this.description,
+                    price: this.price,
                     facilityId: this.content.id
                 }
             } else {
@@ -145,6 +151,7 @@ methods: {
                     duration: this.duration,
                     description: this.description,
                     facilityId: this.content.id,
+                    price: this.price,
                     coachId: this.coach.id
                 }
             }
@@ -167,6 +174,7 @@ mounted() {
     this.type = this.content.trainingType.replaceAll('_', ' ')
     this.description = this.content.description
     this.duration = this.content.duration
+    this.price = this.content.price
     axios.get('/users/coaches')
     .then(res => {
         this.coaches = res.data;

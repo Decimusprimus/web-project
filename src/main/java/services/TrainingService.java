@@ -34,9 +34,13 @@ public class TrainingService {
 			training.setDuration(dto.getDuration());
 			training.setTrainingType(dto.getTrainingType());
 			training.setCoachId(dto.getCoachId());
+			training.setPrice(dto.getPrice());
 			return trainingRepository.updateT(training);
 		}
 		return null;
 	}
 	
+	public ArrayList<Training> getAllForCoach(UUID id) {
+		return trainingRepository.getForCoach(id);
+	}
 }
