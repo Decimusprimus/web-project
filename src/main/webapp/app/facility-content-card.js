@@ -63,7 +63,7 @@ mounted() {
         axios.get('/user/'+this.content.coachId)
         .then(res => {
                 this.coach = res.data;
-                this.$route.go();
+
         }) 
     }
     if(this.isCustomer) {

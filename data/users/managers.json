@@ -1,6 +1,6 @@
 [
   {
-    "facilityId": null,
+    "facilityId": "d7826faa-a101-4a9b-8a98-586916a872b8",
     "id": "7d06e6fb-15be-4081-80fd-6b6da4f4bc5d",
     "username": "manager",
     "firstName": "Milan",
@@ -11,12 +11,12 @@
     "deleted": false
   },
   {
-    "facilityId": null,
+    "facilityId": "f6986a95-fa1b-465f-8980-3b8f4053859f",
     "id": "48fccdd8-22aa-415f-a0f6-117509fd6ae3",
-    "username": "asdf",
-    "firstName": "asdf",
-    "lastName": "asdf",
-    "dateOfBirth": "2022-06-29",
+    "username": "lily",
+    "firstName": "Ilijana",
+    "lastName": "Jovic",
+    "dateOfBirth": "1998-04-14",
     "userRole": "MANAGER",
     "gender": "FEMALE",
     "deleted": false
@@ -24,12 +24,23 @@
   {
     "facilityId": null,
     "id": "82912016-11db-4035-8be8-083a411ace65",
-    "username": "134",
-    "firstName": "1234",
-    "lastName": "1234",
-    "dateOfBirth": "2022-06-28",
+    "username": "rade",
+    "firstName": "Rade",
+    "lastName": "Petrovic",
+    "dateOfBirth": "1993-07-28",
     "userRole": "MANAGER",
     "gender": "OTHER",
+    "deleted": false
+  },
+  {
+    "facilityId": "1798da00-1ae5-42c0-8544-c1581e5d6efc",
+    "id": "d3adb58b-8f7f-4562-bd5c-0c52622801cd",
+    "username": "manager2",
+    "firstName": "Pero",
+    "lastName": "Peric",
+    "dateOfBirth": "1995-05-17",
+    "userRole": "MANAGER",
+    "gender": "MALE",
     "deleted": false
   }
 ]

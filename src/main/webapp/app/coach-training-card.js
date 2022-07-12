@@ -19,10 +19,8 @@ template: `
                 <h6 v-if="content.price">{{content.price}}</h6>
             </div>
             <div class="f-cnt-price"  style="margin-left: 20px;">
-                <button class="btn btn-primary" v-if="isManager" style="height: 40px;" data-toggle="modal" data-target="#facilityContentEdit">Edit</button>
             </div>
         </div>
-        <facility-content-edit id="facilityContentEdit" v-bind:content="content" v-bind:key="content.id"></facility-content-edit>
         <hr/>
     </div>
     

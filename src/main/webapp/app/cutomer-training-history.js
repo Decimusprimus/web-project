@@ -5,9 +5,14 @@ Vue.component("customer-training-history", {
     }
 },
 template: `
+<div class="content">
+    <div class="m-header">
+        <h3>Training history</h3>
+    </div>
     <div class="container" style="margin-top:50px;">
         <customer-training-card  v-for="item in trainings" v-bind:content="item" v-bind:key="item.id"></customer-training-card>
     </div>
+</div>
 `,
 methods: {
     

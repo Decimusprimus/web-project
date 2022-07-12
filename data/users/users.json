@@ -8,7 +8,7 @@
   },
   {
     "id": "13851eab-7be8-49ae-8f1f-be61abd5af0c",
-    "username": "aaaaa",
+    "username": "petar",
     "password": "1234",
     "userRole": "CUSTOMER",
     "deleted": false
@@ -29,22 +29,15 @@
   },
   {
     "id": "48fccdd8-22aa-415f-a0f6-117509fd6ae3",
-    "username": "asdf",
-    "password": "asdf",
-    "userRole": "MANAGER",
-    "deleted": false
-  },
-  {
-    "id": "82912016-11db-4035-8be8-083a411ace65",
-    "username": "134",
+    "username": "lily",
     "password": "1234",
     "userRole": "MANAGER",
     "deleted": false
   },
   {
-    "id": "af187914-a2f2-4eb6-97b9-f33f3757c8f2",
-    "username": "",
-    "password": "",
+    "id": "82912016-11db-4035-8be8-083a411ace65",
+    "username": "rade",
+    "password": "1234",
     "userRole": "MANAGER",
     "deleted": false
   },
@@ -60,6 +53,13 @@
     "username": "ramila",
     "password": "1234",
     "userRole": "COACH",
+    "deleted": false
+  },
+  {
+    "id": "d3adb58b-8f7f-4562-bd5c-0c52622801cd",
+    "username": "manager2",
+    "password": "1234",
+    "userRole": "MANAGER",
     "deleted": false
   }
 ]

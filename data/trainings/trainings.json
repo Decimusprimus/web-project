@@ -1,24 +1,24 @@
 [
   {
-    "id": "b9dfc63d-1b19-49c9-80dd-fd4879c5e17a",
-    "name": "relaxing masage",
-    "trainingType": "GROUP_TRAINING",
-    "duration": 30,
-    "description": "safa",
-    "price": 30.0,
-    "deleted": false,
-    "facilityId": "d7826faa-a101-4a9b-8a98-586916a872b8",
-    "coachId": "e70278a6-3977-4aa9-af8f-47bf62b5679c"
-  },
-  {
-    "id": "2204d36e-96ba-409a-a4a6-354d0bb4c867",
-    "name": "relaxing masages",
-    "trainingType": "MASSAGE",
-    "duration": 30,
-    "description": "safasfasdf asdf asd  asdfsa df asdf asdf asd as dasd fa sd",
+    "id": "94e3fc82-73fe-49b1-8004-84df6f994119",
+    "name": "Gym and cardio",
+    "trainingType": "GYM_AND_CARDIO",
+    "duration": 0,
+    "description": "",
     "price": 0.0,
     "deleted": false,
     "facilityId": "d7826faa-a101-4a9b-8a98-586916a872b8",
-    "coachId": "cfa212b7-0293-4aa1-bcd2-e5a8cf97a46f"
+    "coachId": null
+  },
+  {
+    "id": "96fe298c-d134-4803-999e-f10a29b0abfb",
+    "name": "Group training",
+    "trainingType": "GROUP_TRAINING",
+    "duration": 0,
+    "description": "",
+    "price": 0.0,
+    "deleted": false,
+    "facilityId": "d7826faa-a101-4a9b-8a98-586916a872b8",
+    "coachId": "e70278a6-3977-4aa9-af8f-47bf62b5679c"
   }
 ]

@@ -14,10 +14,10 @@ template: `
             <img v-bind:src="image">
             <div class="f-cnt-grid" style="width: 100%; justify-content: center; align-content: center; margin-right: 20px; margin-left: 20px">
                 <h6>{{training.name}}</h6>
-                <h6>{{facility.name}}</h6>
+                <h6>Facility: {{facility.name}}</h6>
             </div>
             <div class="f-cnt-price" style="margin-right: 20px;">
-                <h6 v-if="training.price">{{training.price}}</h6>
+                <h6 v-if="training.price">Price: {{training.price}}</h6>
             </div>
             <div class="f-cnt-price" >
                 <h6>Date: {{content.dateTime}}</h6>

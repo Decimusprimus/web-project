@@ -107,6 +107,61 @@
     ],
     "averageScore": 4.7,
     "deleted": false,
-    "managerId": null
+    "managerId": "48fccdd8-22aa-415f-a0f6-117509fd6ae3"
+  },
+  {
+    "id": "1798da00-1ae5-42c0-8544-c1581e5d6efc",
+    "name": "Synergy Training centar",
+    "facilityType": "SPORT_VENUE",
+    "location": {
+      "longitude": 19.8095816,
+      "latitude": 45.2601227,
+      "address": {
+        "streetName": "Veselina Maslese",
+        "number": "74",
+        "city": "Novi Sad City",
+        "postalCode": 21137
+      }
+    },
+    "workingHours": [
+      {
+        "day": "Mon.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Tue.",
+        "from": "--:--",
+        "to": "--:--"
+      },
+      {
+        "day": "Wed.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Thu.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Fri.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Sat.",
+        "from": "00:00",
+        "to": "00:00"
+      },
+      {
+        "day": "Sun.",
+        "from": "00:00",
+        "to": "00:00"
+      }
+    ],
+    "averageScore": 0.0,
+    "deleted": false,
+    "managerId": "d3adb58b-8f7f-4562-bd5c-0c52622801cd"
   }
 ]
