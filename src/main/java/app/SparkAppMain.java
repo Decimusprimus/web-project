@@ -13,12 +13,15 @@ import repositories.CoachRepository;
 import repositories.CustomerRepository;
 import repositories.FacilityRepository;
 import repositories.ManagerRepository;
+import repositories.MembershipRepositroy;
 import repositories.TrainingRepository;
 import repositories.UserRepository;
 import services.FaciltiyService;
+import services.MembershipService;
 import services.TrainingService;
 import services.UserService;
 import controllers.FacilityController;
+import controllers.MembershipController;
 import controllers.TrainingController;
 import controllers.UsersController;
 
@@ -43,10 +46,12 @@ public class SparkAppMain {
 	public static CoachRepository coachRepository;
 	public static FacilityRepository facilityRepository;
 	public static TrainingRepository trainingRepository;
+	public static MembershipRepositroy membershipRepository;
 	
 	public static UserService userService;
 	public static FaciltiyService faciltyService;
 	public static TrainingService trainingService;
+	public static MembershipService membershipService;
 	
 
 	public static void main(String[] args) throws IOException {
@@ -65,10 +70,12 @@ public class SparkAppMain {
 		coachRepository = new CoachRepository("./data/users/coach.json");
 		facilityRepository = new FacilityRepository("./data/facilities/facilities.json");
 		trainingRepository = new TrainingRepository("./data/trainings/trainings.json");
+		membershipRepository = new MembershipRepositroy("./data/memberships/memeberships.json");
 		
 		userService = new UserService(userRepository, customerRepository, adminRepository, managerRepository, coachRepository);
 		faciltyService = new FaciltiyService(facilityRepository);
 		trainingService = new TrainingService(trainingRepository);
+		membershipService = new MembershipService(membershipRepository);
 		
 		port(8080);
 		staticFiles.externalLocation(new File("src/main/webapp").getCanonicalPath());
@@ -100,6 +107,8 @@ public class SparkAppMain {
 		post("/training/:id/image", TrainingController.UploadTrainingImage);
 		get("/training/:id/image", TrainingController.GetTrainingImage);
 		put("/training/:id", TrainingController.UpdateTraining);
+		
+		post("/membership/:option", MembershipController.CreateMembership);
 	}
 
 }

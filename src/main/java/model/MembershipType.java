@@ -1,5 +1,5 @@
 package model;
 
 public enum MembershipType {
-	MONTHLY, YEARLY;
+	MONTH, YEAR, THREE_MONTHS;
 }

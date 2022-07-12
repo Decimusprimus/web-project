@@ -27,6 +27,9 @@
 				<li class="nav-item" style="width: max-content;" v-if="isManager">
 					<a class="nav-link navbar-nav" href="#/manager/facility">My facility</a>
 				</li>
+				<li class="nav-item" style="width: max-content;" v-if="isCustomer">
+					<a class="nav-link navbar-nav" href="#/membership">Buy membership</a>
+				</li>
 			</ul>
 			<span></span>
 			<div class="nav-profile" v-if="!isLoggedIn">
@@ -76,6 +79,7 @@
 		<script src="app/facility-content-modal.js"></script>
 		<script src="app/facility-content-card.js"></script>
 		<script src="app/facility-content-edit.js"></script>
+		<script src="app/membership.js"></script>
 		<script src="app/app.js"></script>
 	</body>
 </html>

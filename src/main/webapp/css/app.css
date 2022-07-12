@@ -201,3 +201,57 @@
     display: flex;
     flex-direction: row;
 }
+
+.m-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    align-content: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.m-header{
+    margin: auto;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.m-card{
+    border: #3d8fe0;
+    border-style: solid;
+    border-radius: 2rem;
+    border-width: 2px;
+}
+
+.m-card-cnt{
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr 2fr;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.m-card-header{
+    border-bottom: 1px solid #ced4da;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.m-purchase{
+    margin: auto;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.m-card-special{
+    border: #e0943d;
+    border-style: solid;
+    border-radius: 2rem;
+    border-width: 2px;
+}

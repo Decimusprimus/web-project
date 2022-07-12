@@ -4,18 +4,19 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class MembershipFee {
-	private String id;
+public class Membership implements IIdentifiable<UUID> {
+	private UUID id;
 	private MembershipType membershipType;
 	private LocalDate dateOfPayment;
-	private LocalDateTime validUntil;
+	private LocalDate validUntil;
 	private double price;
 	private boolean status;
-	private int counter; //TODO maybe change later
+	private int counter; 
+	private boolean deleted;
 	
 	private UUID customerId;
 
-	public MembershipFee(String id, MembershipType membershipType, LocalDate dateOfPayment, LocalDateTime validUntil,
+	public Membership(UUID id, MembershipType membershipType, LocalDate dateOfPayment, LocalDate validUntil,
 			double price, boolean status, int counter, UUID customerId) {
 		super();
 		this.id = id;
@@ -27,18 +28,38 @@ public class MembershipFee {
 		this.counter = counter;
 		this.customerId = customerId;
 	}
+	
+	
 
 
-	public MembershipFee() {
+	public Membership(UUID id, MembershipType membershipType, LocalDate dateOfPayment, LocalDate validUntil,
+			double price, boolean status, int counter, boolean deleted, UUID customerId) {
+		super();
+		this.id = id;
+		this.membershipType = membershipType;
+		this.dateOfPayment = dateOfPayment;
+		this.validUntil = validUntil;
+		this.price = price;
+		this.status = status;
+		this.counter = counter;
+		this.deleted = deleted;
+		this.customerId = customerId;
+	}
+
+
+
+
+	public Membership() {
 		super();
 	}
 	
-
-	public String getId() {
+	@Override
+	public UUID getId() {
 		return id;
 	}
-
-	public void setId(String id) {
+	
+	@Override
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -50,11 +71,11 @@ public class MembershipFee {
 		this.dateOfPayment = dateOfPayment;
 	}
 
-	public LocalDateTime getValidUntil() {
+	public LocalDate getValidUntil() {
 		return validUntil;
 	}
 
-	public void setValidUntil(LocalDateTime validUntil) {
+	public void setValidUntil(LocalDate validUntil) {
 		this.validUntil = validUntil;
 	}
 
@@ -98,6 +119,24 @@ public class MembershipFee {
 
 	public void setMembershipType(MembershipType membershipType) {
 		this.membershipType = membershipType;
+	}
+
+
+
+
+	@Override
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+		
+	}
+
+
+
+
+	@Override
+	public boolean isDeleted() {
+		// TODO Auto-generated method stub
+		return this.deleted;
 	}
 	
 	

@@ -8,6 +8,7 @@ const FacilityNew = { template: '<facility-new></facility-new>' }
 const Facility = { template: '<facility></facility>' }
 const RegisterCoach = { template: '<register-coach></register-coach>' } 
 const ManagerFacility = { template: '<manager-facility></manager-facility>'}
+const Membership = { template: '<membership></membership>'}
 
 const router = new VueRouter({
 	mode: 'hash',
@@ -20,6 +21,7 @@ const router = new VueRouter({
 		{ path: '/facility/:id', component: Facility },
 		{ path: '/coach/register', component: RegisterCoach },
 		{ path: '/manager/facility', component: ManagerFacility },
+		{ path: '/membership', component: Membership },
 	]
 })
 
@@ -33,6 +35,7 @@ var app = new Vue({
 		username : '',
 		isAdmin: false,
 		isManager: false,
+		isCustomer: false,
 	},
 
 	mounted() {
@@ -51,12 +54,19 @@ var app = new Vue({
 				if(this.userRole === 'ADMIN') {
 					this.isAdmin = true;
 					this.isManager = false;
+					this.isCustomer = false;
 				} else if(this.userRole === 'MANAGER') {
 					this.isAdmin = false;
 					this.isManager = true;
+					this.isCustomer = false;
+				} else if(this.userRole === 'CUSTOMER') {
+					this.isAdmin = false;
+					this.isManager = false;
+					this.isCustomer = true;
 				} else {
 					this.isAdmin = false;
 					this.isManager = false;
+					this.isCustomer = false;
 				}
 				 
 				var userId = {
