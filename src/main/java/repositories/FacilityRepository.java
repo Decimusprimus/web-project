@@ -23,9 +23,13 @@ public class FacilityRepository extends Repository<Facility, UUID> {
 		ArrayList<Facility> collection = (ArrayList<Facility>) getAll();
 		ArrayList<Facility> result = new ArrayList<Facility>();
 		for(Facility f : collection) {
-			if((f.getName().toLowerCase().contains(name.toLowerCase()) && !name.isBlank()) || (f.compereType(type) && !type.isBlank()) || (f.getLocation().getAddress().check(location)) && !location.isBlank()) {
+			if(searchCombined(name, location, type, f)) {
 				result.add(f);
 			}
+			
+			/*if((f.getName().toLowerCase().contains(name.toLowerCase()) && !name.isBlank()) && (f.compereType(type) && !type.isBlank()) && (f.getLocation().getAddress().check(location)) && !location.isBlank()) {
+				result.add(f);
+			}*/
 		}
 		return result;
 	}
@@ -73,6 +77,53 @@ public class FacilityRepository extends Repository<Facility, UUID> {
 		return null;
 	}
 	
+	
+	private boolean searchCombined(String name, String location, String type, Facility f) {
+		if(!name.isBlank()) {
+			if(location.isBlank() && type.isBlank()) {
+				//po name
+				if(f.getName().toLowerCase().contains(name.toLowerCase())){
+					return true;
+				}
+			} else if(location.isBlank() && !type.isBlank()) {
+				//name i type
+				if(f.getName().toLowerCase().contains(name.toLowerCase()) && (f.compereType(type))){
+					return true;
+				}
+			} else if(!location.isBlank() && type.isBlank()) { 
+				// name loc
+				if(f.getName().toLowerCase().contains(name.toLowerCase()) && (f.getLocation().getAddress().check(location))){
+					return true;
+				}
+			} else {
+				//name loc type
+				if(f.getName().toLowerCase().contains(name.toLowerCase()) && (f.getLocation().getAddress().check(location) && f.compereType(type))){
+					return true;
+				}
+			}
+		} else {
+			if(location.isBlank() && type.isBlank()) {
+				//svi prazni
+				return true;
+			} else if(location.isBlank() && !type.isBlank()) {
+				//po tipu
+				if(f.compereType(type)){
+					return true;
+				}
+			} else if(!location.isBlank() && type.isBlank()) { 
+				// loc
+				if(f.getLocation().getAddress().check(location)){
+					return true;
+				}
+			} else {
+				//po tipu i loc
+				if(f.getLocation().getAddress().check(location) && f.compereType(type)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 
 

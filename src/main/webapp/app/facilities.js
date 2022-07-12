@@ -8,36 +8,48 @@ Vue.component("facilities", {
     }
 },
 template: `
-    <div class="content">
-        <h1>Facilities</h1>
-        <div class="search-box">
-            <div class="input-group search-field">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Name</span>
+    <div class="content" style="margin-top:50px;">
+        <div>
+            <div class="search-box">
+                <div class="input-group search-field">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Name</span>
+                    </div>
+                    <input type="text"  class="form-control" v-model="name">
                 </div>
-                <input type="text"  class="form-control" v-model="name">
-            </div>
-            <div class="input-group search-field">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Location</span>
+                <div class="input-group search-field">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Location</span>
+                    </div>
+                    <input type="text"  class="form-control" v-model="location">
                 </div>
-                <input type="text"  class="form-control" v-model="location">
-            </div>
-            <div class="input-group search-field">
-                <div class="input-group-prepend">
-                    <label class="input-group-text">Type</label>
+                <div class="input-group search-field">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Type</label>
+                    </div>
+                    <select class="custom-select" v-model="type">
+                        <option></option>
+                        <option>GYM</option>
+                        <option>SWIMMING POOL</option>
+                        <option>SPORT VENUE</option>
+                        <option>DANCE CENTER</option>
+                    </select>
                 </div>
-                <select class="custom-select" v-model="type">
-                    <option></option>
-                    <option>GYM</option>
-                    <option>SWIMMING POOL</option>
-                    <option>SPORT VENUE</option>
-                    <option>DANCE CENTER</option>
-                </select>
+                <button type="button" class="btn btn-light search-field" v-on:click="search">
+                    <i class="fa fa-search"></i>
+                </button>
+                <a class="btn btn-secondary dropdown-toggle" style="margin-left: 20px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">Sort by </a>
+            
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#" v-on:click="sortByNameAsc">Name asc.</a>
+                    <a class="dropdown-item" href="#" v-on:click="sortByNameDsc">Name desc.</a>
+                    <a class="dropdown-item" href="#" v-on:click="sortByLocationAsc">Location asc.</a>
+                    <a class="dropdown-item" href="#" v-on:click="sortByLocationDsc">Location desc.</a>
+                    <a class="dropdown-item" href="#" v-on:click="sortByAvgScoreAsc">Avg. score asc.</a>
+                    <a class="dropdown-item" href="#" v-on:click="sortByAvgScoreDsc">Avg. score desc.</a>
+                </div>
             </div>
-            <button type="button" class="btn btn-light search-field" v-on:click="search">
-                <i class="fa fa-search"></i>
-            </button>
+           
         </div>
         <div class="facilities-content">
             <facility-card v-for="item in facilities" v-bind:facility="item" v-bind:key="item.id"></facility-card>
@@ -84,6 +96,36 @@ methods: {
             isOpen = false;
         }
         return isOpen;
+    },
+    sortByNameAsc: function() {
+        this.facilities.sort((a, b) =>
+            a.name.localeCompare(b.name)
+        )
+    },
+    sortByNameDsc: function() {
+        this.facilities.sort((a, b) =>
+            b.name.localeCompare(a.name)
+        )
+    },
+    sortByLocationAsc: function() {
+        this.facilities.sort((a, b) =>
+            a.location.address.city.localeCompare(b.location.address.city)
+        )
+    },
+    sortByLocationDsc: function() {
+        this.facilities.sort((a, b) =>
+            b.location.address.city.localeCompare(a.location.address.city)
+        )
+    },
+    sortByAvgScoreAsc: function() {
+        this.facilities.sort((a, b) =>
+            a.averageScore - b.averageScore
+        )
+    },
+    sortByAvgScoreDsc: function() {
+        this.facilities.sort((a, b) =>
+            b.averageScore - a.averageScore
+        )
     },
 },
 mounted() {

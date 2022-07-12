@@ -51,7 +51,7 @@ public class Address {
 	}
 	
 	public boolean check(String location) {
-		if(streetName.toLowerCase().contains(location.toLowerCase()) || city.toLowerCase().contains(location.toLowerCase())) {
+		if(city.toLowerCase().contains(location.toLowerCase())) {
 			return true;
 		}
 		return false;

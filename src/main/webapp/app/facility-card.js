@@ -12,7 +12,7 @@ Vue.component("facility-card", {
             <img class="card-img-top facility-img" v-bind:src="image" v-on:click="goToFacility">
             <div class="card-body">
                 <div>
-                    <h4 class="card-title">{{facility.name}} &emsp; <span class="badge badge-primary">4.5</span></h4>
+                    <h4 class="card-title">{{facility.name}} &emsp; <span class="badge badge-primary">{{facility.averageScore}}</span></h4>
                     <h5>{{getAddress()}}</h5>
                     <h6>{{facility.facilityType}}</h6>
                     <div>
