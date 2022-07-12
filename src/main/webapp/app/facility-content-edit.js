@@ -1,4 +1,4 @@
-Vue.component("facility-content-modal", {
+Vue.component("facility-content-edit", {
     data: function() {
     return {
         name: '',
@@ -13,9 +13,9 @@ Vue.component("facility-content-modal", {
         submitted: false,
         nameErrorMsg: '',
         validNameResponse: true,
-        training: null,
     }
 },
+props: ['content'],
 template: `
 <div class="modal fade" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" >
 <div class="modal-dialog ">
@@ -29,13 +29,13 @@ template: `
         <div class="modal-body">
             <form>
                 <div class="form-group">
-                    <label for="nameContent">Name</label>
-                    <input type="text" class="form-control" id="nameContent" v-model="name" v-on:change="nameChange" v-bind:class="{'is-invalid' : !validName() && submitted}" required>
+                    <label for="nameContentEdit">Name</label>
+                    <input type="text" class="form-control" id="nameContentEdit" v-model="name" v-on:change="nameChange" v-bind:class="{'is-invalid' : !validName() && submitted}" required>
                     <div class="invalid-feedback">{{nameErrorMsg}}</div>
                 </div>
                 <div class="form-group">
-                    <label for="typeContent">Type</label>
-                    <select class="form-control" id="typeContent" v-model="type" v-on:change="selectChange" v-bind:class="{'is-invalid' : !type && submitted}" required>
+                    <label for="typeContentEdit">Type</label>
+                    <select class="form-control" id="typeContentEdit" v-model="type" v-on:change="selectChange" v-bind:class="{'is-invalid' : !type && submitted}" required>
                         <option>GYM AND CARDIO</option>
                         <option>GROUP TRAINING</option>
                         <option>PERSONAL TRAINING</option>
@@ -45,33 +45,26 @@ template: `
                     <div class="invalid-feedback">Type is requeued</div>
                 </div>
                 <div class="form-group">
-                    <label for="coachContent">Coach</label>
-                    <select class="form-control" id="coachContent" v-model="selectedCoach" v-bind:disabled="!enableCoach" v-bind:class="{'is-invalid' : !validCoach() && submitted}">
+                    <label for="coachContentEdit">Coach</label>
+                    <select class="form-control" id="coachContentEdit" v-model="selectedCoach" v-bind:disabled="!enableCoach" v-bind:class="{'is-invalid' : !validCoach() && submitted}">
                         <option v-for="item in coaches" v-on:click="selectCoach(item)">{{item.firstName}} {{item.lastName}}</option>
                     </select>
                     <div class="invalid-feedback">Coach is requeued</div>
                 </div>
-                <label for="imageContent">Image</label>
-                    <div>
-                        <div class="previewBlock" v-bind:style="logoImage">  
-                        </div>
-                        <input type="file" ref="imageContent"  accept="image/jpg" class="form-control" id="imageContent" v-on:input="selectImgFile" v-bind:class="{'is-invalid' : !filePreview && submitted}">
-                        <div class="invalid-feedback">Image is requeued</div>
-                    </div>
                 <div class="form-group">
-                    <label for="descriptionContent">Description</label>
-                    <textarea  type="text" class="form-control" id="descriptionContent" v-model="description" ></textarea>
+                    <label for="descriptionContentEdit">Description</label>
+                    <textarea  type="text" class="form-control" id="descriptionContentEdit" v-model="description" ></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="durationContent">Duration</label>
+                    <label for="durationContentEdit">Duration</label>
                     <small class="text-muted">in minutes</small>
-                    <input type="number" class="form-control" id="durationContent" v-model="duration" min="1">
+                    <input type="number" class="form-control" id="durationContentEdit" v-model="duration" min="1">
                 </div>
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" v-on:click="creteContent">Save changes</button>
+            <button type="button" class="btn btn-primary" v-on:click="updateContent">Save changes</button>
         </div>
 
     </div>
@@ -127,25 +120,23 @@ methods: {
         return true;
     },
     validateForm: function() {
-        if(this.validName() && this.type && this.filePreview && this.validCoach()){
+        if(this.validName() && this.type && this.validCoach()){
             return true;
         }
         return false;
     },
-    creteContent: function(e) {
+    updateContent: function(e) {
         e.preventDefault();
         this.submitted = true;
-        const id = this.$route.params.id;
         if(this.validateForm()) {
             var t = this.type.replaceAll(' ', '_');
             if(!this.coach) {
-                
                 var dto = {
                     name: this.name,
                     trainingType: t,
                     duration: this.duration,
                     description: this.description,
-                    facilityId: id
+                    facilityId: this.content.id
                 }
             } else {
                 var dto = {
@@ -153,30 +144,15 @@ methods: {
                     trainingType: t,
                     duration: this.duration,
                     description: this.description,
-                    facilityId: id,
+                    facilityId: this.content.id,
                     coachId: this.coach.id
                 }
             }
-            axios.post('/training/facility', JSON.stringify(dto))
+            console.log(dto);
+            axios.put('/training/'+this.content.id, JSON.stringify(dto))
             .then(res => {
-                console.log(res.data);
-                this.training = res.data;
-                let data = new FormData();
-                data.append('file', this.$refs.imageContent.files[0])
-                let config = {
-                    header : {
-                        "Content-Type" : "multipart/form-data"
-                    }
-                }
-
-                axios.post('/training/'+res.data.id+'/image', data, config)
-                .then(res => {
-                    console.log("uploaded");
-                    this.success = true;
-                    this.$emit('newTraining', this.training);
-                    this.$refs.Close.click();
-                })
-                
+                this.$refs.Close.click();
+                this.$router.go();
             })
             .catch(err => {
                 if(err.response.data === 'Name taken') {
@@ -187,9 +163,19 @@ methods: {
     }
 },
 mounted() {
+    this.name = this.content.name
+    this.type = this.content.trainingType.replaceAll('_', ' ')
+    this.description = this.content.description
+    this.duration = this.content.duration
     axios.get('/users/coaches')
     .then(res => {
         this.coaches = res.data;
+        this.coaches.forEach(element => {
+            if(element.id === this.content.coachId){
+                this.coach = element;
+                this.selectCoach = element.firstName + ' ' + element.lastName;
+            }
+        });
     })
 },
 computed: {
@@ -200,7 +186,7 @@ computed: {
             }
         } else {
             return {
-                backgroundImage: '#c3c6c432'
+                backgroundImage: 'url("\'/training/" +this.content.id+"/image"\')'
             }
         }
     }

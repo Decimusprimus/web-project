@@ -42,4 +42,25 @@ public class TrainingRepository extends Repository<Training, UUID> {
 		return retCollection;
 	}
 
+	public Training updateT(Training entity) {
+		ArrayList<Training> collection = (ArrayList<Training>) getAll();
+		for(Training t : collection) {
+			if(t.getName().equals(entity.getName())) {
+				if(!t.getId().equals(entity.getId())) {
+					return null;
+				}
+			}
+		}
+		for(Training t : collection) {
+			if(t.getId().equals(entity.getId())) {
+				collection.set(collection.indexOf(t), entity);
+				break;
+			}
+		}
+		saveAll(collection);
+		return entity;
+	}
+	
+	
+
 }

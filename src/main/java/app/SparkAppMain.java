@@ -99,6 +99,7 @@ public class SparkAppMain {
 		post("/training/facility", TrainingController.CreateNewTraining);
 		post("/training/:id/image", TrainingController.UploadTrainingImage);
 		get("/training/:id/image", TrainingController.GetTrainingImage);
+		put("/training/:id", TrainingController.UpdateTraining);
 	}
 
 }

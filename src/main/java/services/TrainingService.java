@@ -26,4 +26,17 @@ public class TrainingService {
 		return trainingRepository.getAllForFacility(id);
 	}	
 	
+	public Training updateTraining(TrainingDTO dto, String id) {
+		Training training = trainingRepository.getById(UUID.fromString(id));
+		if(training != null) {
+			training.setName(dto.getName());
+			training.setDescription(dto.getDescription());
+			training.setDuration(dto.getDuration());
+			training.setTrainingType(dto.getTrainingType());
+			training.setCoachId(dto.getCoachId());
+			return trainingRepository.updateT(training);
+		}
+		return null;
+	}
+	
 }

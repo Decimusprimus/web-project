@@ -61,8 +61,11 @@ template: `
                 <facility-content-modal id="facilityContentModal" v-if="isManagerFacility" v-on:newTraining="newTraining"></facility-content-modal>
             </div>
             <hr/>
-            <div>
-            </div>
+            <facility-content-card v-for="item in trainings" v-bind:content="item" v-bind:isMy="isManagerFacility" v-bind:key="item.id"></facility-content-card>
+        </div>
+        <div class="container" style="margin-top: 50px;">
+            <h4>Comments</h4>
+            <hr/>
         </div>
     </div>
 `,

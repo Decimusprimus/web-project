@@ -96,5 +96,26 @@ public class TrainingController {
 			return "";
 		}
 	};
+	
+	public static Route UpdateTraining = (Request request, Response response) -> {
+		Session sesion = request.session();
+		UUID userId = sesion.attribute("user");
+		User user = userService.GetUser(userId);
+		if(user != null) {
+			if(user.getUserRole() == UserRole.MANAGER) {
+				String id = request.params(":id");
+				TrainingDTO dto = gson.fromJson(request.body(), TrainingDTO.class);
+				Training training = trainingService.updateTraining(dto, id);
+				if(training != null) {
+					response.type("application/json");
+					return gson.toJson(training);
+				}
+				response.status(400);
+				return "Name taken";
+			}
+		}
+		response.status(403);
+		return "";
+	};
 
 }
